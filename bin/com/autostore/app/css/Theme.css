@@ -1,0 +1,177 @@
+/*********************************************/
+
+/********************Global*******************/
+
+/*********************************************/
+.root {
+    -fx-font-size: 16px;
+    -fx-background-color: #333232; 
+}
+
+/*********************************************/
+
+/*******************Header********************/
+
+/*********************************************/
+.header {
+    -fx-font-size: 32px;
+    -fx-text-fill: white;
+}
+
+/*********************************************/
+
+/********************Label********************/
+
+/*********************************************/
+.label {
+    -fx-text-fill: white;
+}
+
+/*********************************************/
+
+/*****************Text Field******************/
+
+/*********************************************/
+
+.text-field { 
+    -fx-background-color: #333232; 
+    -fx-text-fill: white;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: #808088;
+}
+
+.text-field:focused {
+    -fx-border-color: white;
+}
+
+/*********************************************/
+
+/******************Buttons********************/
+
+/*********************************************/
+.button {
+    -fx-background-color: #464646;
+    -fx-text-fill: white;
+    -fx-background-radius: 0;
+    -fx-padding: 7 12 7 12;
+}
+
+.button:hover {
+    -fx-background-color: #383838; 
+}
+/*********************************************/
+
+/******************List View******************/
+
+/*********************************************/
+
+.list-view {
+    -fx-background-color: #333232;
+}
+
+/*********************************************/
+
+/*****************Table View******************/
+
+/*********************************************/
+.table-view {
+	-fx-background-color: #333232;
+	-fx-control-inner-background: #333232;
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: #464646;
+    -fx-table-cell-border-color: #464646;
+}
+
+.table-view .column-header {	
+	-fx-background-color: #464646;	
+}
+
+.table-view .column-header .label {
+	-fx-background-color: #464646;
+	-fx-text-fill: white;
+}
+
+.table-view .table-row-cell:focused {	
+   	-fx-background-color: #464646; 
+}
+
+.table-view .table-row-cell:focused .text {	
+   	-fx-text-fill: #464646;
+}
+
+/*********************************************/
+
+/*******************Combo Box*****************/
+
+/*********************************************/
+.combo-box {
+    -fx-background-color: #333232;   
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 0 2;
+    -fx-border-color: #808088;
+}
+
+.combo-box .list-cell {
+    -fx-text-fill: white;
+    -fx-background-color: #333232; 
+}
+
+.combo-box:focused {
+    -fx-border-color: white;
+}
+
+.combo-box-popup .list-view .list-cell:hover {
+    -fx-text-fill: white;
+    -fx-background-color: #464646;
+}
+
+/*********************************************/
+
+/*****************Scroll Pane*****************/
+
+/*********************************************/
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+   -fx-background-color: transparent;
+}
+
+/*********************************************/
+
+/*******************Tab Pane******************/
+
+/*********************************************/
+
+.tab-pane {
+    -fx-background-color: #464646; 
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #464646; 
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {  
+    -fx-text-fill: white;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected  {  
+    -fx-focus-color: transparent;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {  
+    -fx-background-color: #333232;  
+}  
+
+
+
+
+
+
+
+
+
+
+
