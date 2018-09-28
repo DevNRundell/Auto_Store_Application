@@ -11,11 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerInvoice {
+public class InvoiceItemsCustomer {
 
-    private ObservableList<InvoiceTableModel> invoiceData = FXCollections.observableArrayList();
+    /*private ObservableList<InvoiceTableModel> invoiceData = FXCollections.observableArrayList();
 
-    public void searchInvoiceData(int customerID) {
+    public void searchInvoiceItemData(int orderID) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -27,25 +27,15 @@ public class CustomerInvoice {
 
             if(!connection.isClosed()) {
 
-                String query = "select * from customer_order where customer_id = ?";
+                String query = "";
 
                 preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setInt(1, customerID);
+                preparedStatement.setInt(1, orderID);
                 resultSet = preparedStatement.executeQuery();
 
                 while(resultSet.next()) {
 
-                    InvoiceTableModel invoiceModel = new InvoiceTableModel();
 
-                    invoiceModel.setOrderID(resultSet.getInt("order_id"));
-                    invoiceModel.setDate(resultSet.getDate("date"));
-                    invoiceModel.setTax(resultSet.getDouble("tax"));
-                    invoiceModel.setSubTotal(resultSet.getDouble("sub_total"));
-                    invoiceModel.setDiscount(resultSet.getDouble("discount"));
-                    invoiceModel.setTotal(resultSet.getDouble("total"));
-                    invoiceModel.setCustomerID(resultSet.getInt("customer_id"));
-
-                    invoiceData.add(invoiceModel);
 
                 }
             }
@@ -62,5 +52,7 @@ public class CustomerInvoice {
 
     public ObservableList<InvoiceTableModel> getCustomerData() {
         return invoiceData;
-    }
+    }*/
+
+    //Wait until better understanding of DB concept
 }

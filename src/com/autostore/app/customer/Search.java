@@ -12,30 +12,30 @@ import com.autostore.app.model.CustomerTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class SearchCustomer extends Customer {
+public class Search extends Customer {
 	
 	private ObservableList<CustomerTableModel> customerData = FXCollections.observableArrayList();
-	
+
 	public void searchCustomerData(String query, String searchValue) {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
-			
+
 			connection = DBConnect.getConnection();
-			
+
 			if(!connection.isClosed()) {
-				
+
 				preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1, searchValue);
 				resultSet = preparedStatement.executeQuery();
-			
+
 				while(resultSet.next()) {
-					
+
 					CustomerTableModel customerModel = new CustomerTableModel();
-					
+
 					customerModel.setCustomer_id(resultSet.getInt("customer_id"));
 					customerModel.setFirstName(resultSet.getString("first_name"));
 					customerModel.setLastName(resultSet.getString("last_name"));
@@ -44,12 +44,12 @@ public class SearchCustomer extends Customer {
 					customerModel.setPhone(resultSet.getString("phone"));
 					customerModel.setCity(resultSet.getString("city"));
 					customerModel.setState(resultSet.getString("state"));
-					
+
 					customerData.add(customerModel);
 
 				}
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DialogController.showDatabaseError();
