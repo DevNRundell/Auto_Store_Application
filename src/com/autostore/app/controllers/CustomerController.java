@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
 
+import com.autostore.app.customer.CustomerInvoice;
 import com.autostore.app.customer.SearchCustomer;
 import com.autostore.app.customer.UpdateCustomer;
 import com.autostore.app.model.SearchByCBModel;
@@ -94,20 +95,20 @@ public class CustomerController implements Initializable {
     @FXML
     private Tab purchaseHistoryTab;
 
-    @FXML
-    private ListView<InvoiceListModel> invoiceSumListView;
+	@FXML
+	private ListView<?> invoiceSumListView;
 
-    @FXML
-    private Label discountLabel;
+	@FXML
+	private Label invoiceDiscountLabel;
 
-    @FXML
-    private Label subTotalLabel;
+	@FXML
+	private Label invoiceSubTotalLabel;
 
-    @FXML
-    private Label taxesLabel;
+	@FXML
+	private Label invoiceTaxesLabel;
 
-    @FXML
-    private Label totalLabel;
+	@FXML
+	private Label invoiceTotalLabel;
 
     @FXML
     private TableView<InvoiceTableModel> invoiceTable;
@@ -141,6 +142,27 @@ public class CustomerController implements Initializable {
     
     @FXML
     private ComboBox<SearchByCBModel> searchByComboBox;
+
+	@FXML
+	private Tab newOrderTab;
+
+	@FXML
+	private ListView<?> orderSumListView;
+
+	@FXML
+	private Label orderDiscountLabel;
+
+	@FXML
+	private ComboBox<?> orderDiscountCB;
+
+	@FXML
+	private Label orderSubTotalLabel;
+
+	@FXML
+	private Label orderTaxesLabel;
+
+	@FXML
+	private Label orderTotalLabel;
     private TextField[] textFields;
     private CustomerTableModel selectedTableRow;
     
@@ -223,9 +245,15 @@ public class CustomerController implements Initializable {
 	}
 	
 	private void searchInvoice(int customerID) {
-		
-		
-		
+
+        CustomerInvoice invoice = new CustomerInvoice();
+        invoice.searchInvoiceData(customerID);
+
+        if(!invoice.getCustomerData().isEmpty()) {
+            invoiceTable.setItems(invoice.getCustomerData());
+        } else {
+            invoiceTable.getItems().clear();
+        }
 		
 	}
 
@@ -271,7 +299,7 @@ public class CustomerController implements Initializable {
 	
 	private void initInvoiceTable() {
 		
-		invoiceIDColumn.setCellValueFactory(new PropertyValueFactory<>("invoiceID"));
+		invoiceIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
 		orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 		discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
 		subTotalColumn.setCellValueFactory(new PropertyValueFactory<>("subTotal"));

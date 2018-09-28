@@ -2,7 +2,7 @@ package com.autostore.app.model;
 
 import java.sql.Date;
 
-public class InvoiceTableModel {
+public class InvoiceTableModel extends CustomerTableModel {
 	
 	private int orderID;
 	private Date date;

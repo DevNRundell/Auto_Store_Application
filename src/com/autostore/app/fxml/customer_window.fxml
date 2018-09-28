@@ -155,12 +155,12 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ListView>
-                              <Label fx:id="discountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
+                              <Label fx:id="invoiceDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="subTotalLabel" text="Sub Total:">
+                              <Label fx:id="invoiceSubTotalLabel" text="Sub Total:">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -168,7 +168,7 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="taxesLabel" layoutX="20.0" layoutY="508.0" text="Taxes:">
+                              <Label fx:id="invoiceTaxesLabel" layoutX="20.0" layoutY="508.0" text="Taxes:">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -176,7 +176,7 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="totalLabel" layoutX="20.0" layoutY="540.0" text="Total:">
+                              <Label fx:id="invoiceTotalLabel" layoutX="20.0" layoutY="540.0" text="Total:">
                                  <VBox.margin>
                                     <Insets bottom="10.0" />
                                  </VBox.margin>
@@ -209,6 +209,58 @@
                               </TableView>
                            </children>
                         </HBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="newOrderTab" text="New Order">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1200.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="20.0" layoutY="626.0" text="Order Summary:" />
+                              <ListView fx:id="orderSumListView" VBox.vgrow="SOMETIMES">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ListView>
+                              <Label fx:id="orderDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <ComboBox fx:id="orderDiscountCB" prefWidth="150.0" />
+                              <Label fx:id="orderSubTotalLabel" text="Sub Total:">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="orderTaxesLabel" layoutX="20.0" layoutY="508.0" text="Taxes:">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="orderTotalLabel" layoutX="20.0" layoutY="540.0" text="Total:">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <HBox layoutX="369.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                      </children>
                   </AnchorPane>
                </content>
