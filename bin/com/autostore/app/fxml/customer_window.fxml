@@ -20,7 +20,7 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab fx:id="informationTab" text="Information">
+          <Tab fx:id="informationTab" closable="false" text="Information">
             <content>
                   <BorderPane>
                      <left>
@@ -143,7 +143,7 @@
                   </BorderPane>
             </content>
           </Tab>
-            <Tab fx:id="purchaseHistoryTab" text="Purchase History">
+            <Tab fx:id="purchaseHistoryTab" closable="false" text="Purchase History">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
