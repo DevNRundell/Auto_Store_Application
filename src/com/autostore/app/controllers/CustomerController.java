@@ -3,8 +3,8 @@ package com.autostore.app.controllers;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
-import com.autostore.app.customer.InvoiceCustomer;
-import com.autostore.app.customer.Search;
+import com.autostore.app.customer.CustomerInvoice;
+import com.autostore.app.customer.SearchCustomer;
 import com.autostore.app.customer.UpdateCustomer;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.model.CustomerTableModel;
@@ -168,7 +168,7 @@ public class CustomerController implements Initializable {
 		
 		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF};
 		
-		searchTypeComboBox.getItems().setAll("Absolute Search", "Relative Search");
+		searchTypeComboBox.getItems().setAll("Absolute SearchCustomer", "Relative SearchCustomer");
 		searchTypeComboBox.getSelectionModel().selectFirst();
 		
 		initCustomerTable();
@@ -264,7 +264,7 @@ public class CustomerController implements Initializable {
 	
 	private void searchInvoice(int customerID) {
 
-        InvoiceCustomer invoice = new InvoiceCustomer();
+        CustomerInvoice invoice = new CustomerInvoice();
         invoice.searchInvoiceData(customerID);
 
         if(!invoice.getCustomerData().isEmpty()) {
@@ -282,7 +282,7 @@ public class CustomerController implements Initializable {
 		
 		String searchByValue = searchByComboBox.getSelectionModel().getSelectedItem().getSqlValue();
 			
-		Search customer = new Search();
+		SearchCustomer customer = new SearchCustomer();
 
 		if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
 			searchValue = searchTF.getText().trim();

@@ -12,7 +12,7 @@ import com.autostore.app.model.CustomerTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Search extends Customer {
+public class SearchCustomer extends Customer {
 	
 	private ObservableList<CustomerTableModel> customerData = FXCollections.observableArrayList();
 
