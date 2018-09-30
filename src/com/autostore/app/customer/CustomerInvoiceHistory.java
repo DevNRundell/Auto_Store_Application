@@ -11,7 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerPurchaseHistory {
+public class CustomerInvoiceHistory {
 
     /*private ObservableList<InvoiceTableModel> invoiceData = FXCollections.observableArrayList();
 
