@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="1600.0" styleClass="root" stylesheets="com/autostore/app/css/Theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.autostore.app.controllers.CustomerController">
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab fx:id="informationTab" closable="false" text="Information">
+            <content>
+                  <BorderPane>
+                     <left>
+                        <VBox BorderPane.alignment="CENTER">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="First Name" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="firstNameTF" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label maxWidth="1.7976931348623157E308" text="Last Name" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="lastNameTF" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label maxWidth="1.7976931348623157E308" text="Address" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="addressTF" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label maxWidth="1.7976931348623157E308" text="Email" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="emailTF" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="395.0" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label maxWidth="1.7976931348623157E308" text="Phone" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="phoneTF" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="395.0" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="363.0" text="City" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="cityTF" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="395.0" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Label maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="363.0" text="State" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="stateTF" maxWidth="1.7976931348623157E308" prefHeight="37.0" prefWidth="395.0" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Button fx:id="addButton" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="400.0" text="Add" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="removeButton" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="400.0" text="Remove" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button fx:id="updateButton" alignment="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="400.0" text="Update" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </left>
+                     <center>
+                        <HBox BorderPane.alignment="CENTER">
+                           <children>
+                              <TableView fx:id="customerTable" HBox.hgrow="ALWAYS">
+                                <columns>
+                                  <TableColumn fx:id="firstNameColumn" prefWidth="197.0" text="First Name" />
+                                    <TableColumn fx:id="lastNameColumn" prefWidth="142.0" text="Last Name" />
+                                    <TableColumn fx:id="addressColumn" prefWidth="115.0" text="Address" />
+                                    <TableColumn fx:id="emailColumn" prefWidth="187.0" text="Email" />
+                                    <TableColumn fx:id="phoneColumn" prefWidth="162.0" text="Phone" />
+                                    <TableColumn fx:id="cityColumn" prefWidth="142.0" text="City" />
+                                    <TableColumn fx:id="stateColumn" prefWidth="254.0" text="State" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </TableView>
+                           </children>
+                        </HBox>
+                     </center>
+                  </BorderPane>
+            </content>
+          </Tab>
+            <Tab fx:id="purchaseHistoryTab" closable="false" text="Purchase History">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1200.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <Label layoutX="20.0" layoutY="626.0" text="Invoice Summary:" />
+                              <ListView fx:id="invoiceSumListView" VBox.vgrow="SOMETIMES">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ListView>
+                              <Label fx:id="discountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="subTotalLabel" text="Sub Total:">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="taxesLabel" layoutX="20.0" layoutY="508.0" text="Taxes:">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="totalLabel" layoutX="20.0" layoutY="540.0" text="Total:">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="10.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <HBox layoutX="369.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <TableView fx:id="invoiceTable" HBox.hgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn fx:id="invoiceIDColumn" prefWidth="197.0" text="Invoice ID" />
+                                    <TableColumn fx:id="orderDateColumn" prefWidth="142.0" text="Order Date" />
+                                    <TableColumn fx:id="discountColumn" prefWidth="115.0" text="Discount" />
+                                    <TableColumn fx:id="subTotalColumn" prefWidth="187.0" text="Sub-Total" />
+                                    <TableColumn fx:id="taxColumn" prefWidth="162.0" text="Tax" />
+                                    <TableColumn fx:id="totalColumn" prefWidth="142.0" text="Total" />
+                                 </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </TableView>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <top>
+      <Pane>
+         <children>
+            <TextField fx:id="searchTF" layoutY="5.0" prefWidth="545.0" promptText="Search..." />
+            <Button fx:id="searchButton" alignment="CENTER" layoutX="1015.0" layoutY="5.0" mnemonicParsing="false" text="Search" />
+            <ComboBox fx:id="searchTypeComboBox" layoutX="785.0" layoutY="5.0" prefWidth="220.0" />
+            <ComboBox fx:id="searchByComboBox" layoutX="555.0" layoutY="5.0" prefWidth="220.0" />
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </Pane>
+   </top>
+</BorderPane>
