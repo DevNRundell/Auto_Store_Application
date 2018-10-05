@@ -168,7 +168,7 @@ public class CustomerController implements Initializable {
 		
 		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF};
 		
-		searchTypeComboBox.getItems().setAll("Absolute SearchCustomer", "Relative SearchCustomer");
+		searchTypeComboBox.getItems().setAll("Absolute", "Relative");
 		searchTypeComboBox.getSelectionModel().selectFirst();
 		
 		initCustomerTable();

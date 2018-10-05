@@ -2,9 +2,11 @@ package com.autostore.app.launch;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class LaunchApplication extends Application{
@@ -26,7 +28,7 @@ public class LaunchApplication extends Application{
 			primaryStage.setTitle("Auto Store Management System");
 			primaryStage.getIcons().add(new Image("com/autostore/app/images/car_icon.png"));
 			primaryStage.setResizable(true);
-			primaryStage.show();
+            primaryStage.show();
 
 		} catch(Exception e) {
 				e.printStackTrace();
