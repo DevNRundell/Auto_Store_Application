@@ -286,10 +286,10 @@ public class CustomerController implements Initializable {
 
 		if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
 			searchValue = searchTF.getText().trim();
-			query = "select * from customer where " + searchByValue + " = ?";
+			query = "select * from customer_info where " + searchByValue + " = ?";
 		} else {
 			searchValue = "%" + searchTF.getText().trim() + "%";
-			query = "select * from customer where " + searchByValue + " like ?";
+			query = "select * from customer_info where " + searchByValue + " like ?";
 		}
 			
 		customer.searchCustomerData(query, searchValue);
