@@ -9,9 +9,9 @@ import java.sql.SQLException;
 public class DBConnect {
 
     private static DBConnect instance = new DBConnect();
-    private static final String url = "jdbc:mysql://localhost:3306/auto_application";
-    private static final String userNameDB = "root";
-    private static final String passwordDB = "root";
+    private static final String url = "jdbc:mysql://sql9.freemysqlhosting.net/sql9259703";
+    private static final String userNameDB = "sql9259703";
+    private static final String passwordDB = "k3yVGFSbvW";
     private static final String Driver = "com.mysql.jdbc.Driver";
 
     private DBConnect() {

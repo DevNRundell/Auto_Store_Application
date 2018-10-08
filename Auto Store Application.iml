@@ -8,9 +8,9 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="">
-      <library>
+      <library name="\com\autostore\app\jars\mysql-connector-java-5.1.34-bin.jar">
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/@Personal Files@/Programming/Java/Java API/MySQL Connector/mysql-connector-java-5.1.34-bin.jar!/" />
+          <root url="jar://$MODULE_DIR$/src/com/autostore/app/jars/mysql-connector-java-5.1.34-bin.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

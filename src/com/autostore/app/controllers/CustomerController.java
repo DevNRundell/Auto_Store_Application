@@ -168,7 +168,7 @@ public class CustomerController implements Initializable {
 		
 		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF};
 		
-		searchTypeComboBox.getItems().setAll("Absolute SearchCustomer", "Relative SearchCustomer");
+		searchTypeComboBox.getItems().setAll("Absolute", "Relative");
 		searchTypeComboBox.getSelectionModel().selectFirst();
 		
 		initCustomerTable();
@@ -286,10 +286,10 @@ public class CustomerController implements Initializable {
 
 		if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
 			searchValue = searchTF.getText().trim();
-			query = "select * from customer where " + searchByValue + " = ?";
+			query = "select * from customer_info where " + searchByValue + " = ?";
 		} else {
 			searchValue = "%" + searchTF.getText().trim() + "%";
-			query = "select * from customer where " + searchByValue + " like ?";
+			query = "select * from customer_info where " + searchByValue + " like ?";
 		}
 			
 		customer.searchCustomerData(query, searchValue);
