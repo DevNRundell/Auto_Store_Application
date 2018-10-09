@@ -44,6 +44,7 @@ public class SearchCustomer extends Customer {
 					customerModel.setPhone(resultSet.getString("phone"));
 					customerModel.setCity(resultSet.getString("city"));
 					customerModel.setState(resultSet.getString("state"));
+					customerModel.setZipCode(resultSet.getString("zip_code"));
 
 					customerData.add(customerModel);
 

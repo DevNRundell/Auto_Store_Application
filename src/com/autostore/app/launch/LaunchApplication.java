@@ -28,6 +28,7 @@ public class LaunchApplication extends Application{
 			primaryStage.setTitle("Auto Store Management System");
 			primaryStage.getIcons().add(new Image("com/autostore/app/images/car_icon.png"));
 			primaryStage.setResizable(true);
+			primaryStage.setMaximized(true);
             primaryStage.show();
 
 		} catch(Exception e) {
