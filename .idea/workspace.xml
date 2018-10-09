@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dd650f0d-8c87-4f5f-993e-2ffe30615d8a" name="Default Changelist" comment="">
+    <list default="true" id="a6c2e1b9-9418-46fd-bf95-142fcb1f710f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Auto Store Application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Auto Store Application.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Auto Store Application/com/autostore/app/fxml/customer_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Auto Store Application/com/autostore/app/fxml/customer_window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Auto Store Application/com/autostore/app/fxml/supplier_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Auto Store Application/com/autostore/app/fxml/supplier_window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/customer/AddCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/customer/AddCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/customer/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/customer/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/customer/UpdateCustomer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/customer/UpdateCustomer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/database/DBConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/database/DBConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/fxml/customer_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/fxml/customer_window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/fxml/main_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/fxml/main_window.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/launch/LaunchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/launch/LaunchApplication.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -98,12 +86,12 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="fxml" value="1" />
-          <entry key="java" value="14" />
+          <entry key="java" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="14" />
+          <entry key="JAVA" value="21" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
@@ -124,15 +112,38 @@
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.checkout.local" value="2" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2948">
-              <caret line="193" column="30" lean-forward="true" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
+            <state relative-caret-position="5729">
+              <caret line="365" column="61" selection-start-line="365" selection-start-column="61" selection-end-line="365" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/MainApplicationController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/launch/LaunchApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -150,7 +161,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Nicholas/UI_design" />
       </map>
     </option>
     <favorite-branches>
@@ -196,7 +207,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,40 +237,13 @@
               <item name="Auto_Store_Application" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="customer" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Auto_Store_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Auto_Store_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Auto_Store_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Auto_Store_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Auto_Store_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Auto_Store_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="launch" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Auto_Store_Application" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Auto_Store_Application" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -301,6 +284,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.LaunchApplication" />
+        <item itemvalue="Application.LaunchApplication" />
+        <item itemvalue="Application.LaunchApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -315,13 +300,21 @@
       <option name="presentableId" value="Default" />
       <updated>1538430489990</updated>
     </task>
+    <task id="LOCAL-00001" summary="Merge branch 'Nicholas/UI_design'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Auto Store Application.iml&#10;#&#9;out/production/Auto Store Application/com/autostore/app/fxml/customer_window.fxml&#10;#&#9;src/com/autostore/app/fxml/customer_window.fxml">
+      <created>1539049738044</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1539049738044</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19029851" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -330,13 +323,13 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.13109426" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.13109426" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50053304" side_tool="true" visible="true" weight="0.13109426" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.36619717" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.23829788" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -351,6 +344,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="Merge branch 'Nicholas/UI_design'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Auto Store Application.iml&#10;#&#9;out/production/Auto Store Application/com/autostore/app/fxml/customer_window.fxml&#10;#&#9;src/com/autostore/app/fxml/customer_window.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'Nicholas/UI_design'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;Auto Store Application.iml&#10;#&#9;out/production/Auto Store Application/com/autostore/app/fxml/customer_window.fxml&#10;#&#9;src/com/autostore/app/fxml/customer_window.fxml" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.project">
@@ -388,12 +386,12 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/main_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="191" selection-start-line="10" selection-start-column="191" selection-end-line="10" selection-end-column="191" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/InventoryController.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -403,20 +401,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/inventory_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="7" selection-start-column="7" selection-end-column="7" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/dialog_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="185" selection-start-line="9" selection-start-column="185" selection-end-line="9" selection-end-column="185" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/DialogController.java">
       <provider selected="true" editor-type-id="text-editor" />
@@ -429,12 +427,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="168" selection-start-line="18" selection-start-column="168" selection-end-line="18" selection-end-column="168" />
         </state>
       </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/CustomerInvoice.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -471,13 +469,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/AddCustomer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="28" column="57" lean-forward="true" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/UpdateCustomer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="386">
@@ -485,24 +476,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/launch/LaunchApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/AddCustomer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/MainApplicationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="527">
+          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2948">
-          <caret line="193" column="30" lean-forward="true" selection-start-line="193" selection-start-column="30" selection-end-line="193" selection-end-column="30" />
+        <state relative-caret-position="5729">
+          <caret line="365" column="61" selection-start-line="365" selection-start-column="61" selection-end-line="365" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/MainApplicationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/launch/LaunchApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
         </state>
       </provider>
     </entry>
