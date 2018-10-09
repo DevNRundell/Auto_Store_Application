@@ -39,7 +39,6 @@ public class AddCustomer extends Customer{
                 return true;
 
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
             DialogController.showDatabaseError();
