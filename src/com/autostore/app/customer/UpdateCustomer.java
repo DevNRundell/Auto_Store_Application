@@ -21,7 +21,7 @@ public class UpdateCustomer extends Customer {
 			
 			if(!connection.isClosed()) {
 				
-				String query = "update customer set first_name = ?, last_name = ?, address = ?, email = ?, phone = ?, city = ?, state = ? where customer_id = ?";
+				String query = "update customer_info set first_name = ?, last_name = ?, address = ?, email = ?, phone = ?, city = ?, state = ?, zip_code = ? where customer_id = ?";
 				
 				connection.setAutoCommit(false);
 				preparedStatement = connection.prepareStatement(query);
@@ -32,7 +32,8 @@ public class UpdateCustomer extends Customer {
 				preparedStatement.setString(5, phone);
 				preparedStatement.setString(6, city);
 				preparedStatement.setString(7, state);
-				preparedStatement.setInt(8, customerID);
+				preparedStatement.setString(8, zipCode);
+				preparedStatement.setInt(9, customerID);
 				
 				preparedStatement.executeUpdate();
 				connection.commit();
@@ -55,5 +56,4 @@ public class UpdateCustomer extends Customer {
 		}
 		return false;
 	}
-
 }
