@@ -10,6 +10,7 @@ public abstract class Customer {
 	String phone;
 	String city;
 	String state;
+	String zipCode;
 	
 	public int getCustomerID() {
 		return customerID;
@@ -59,4 +60,10 @@ public abstract class Customer {
 	public void setState(String state) {
 		this.state = state;
 	}
+    public String getZipCode() {
+        return zipCode;
+    }
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 }
