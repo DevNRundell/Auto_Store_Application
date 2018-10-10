@@ -3,6 +3,8 @@ package com.autostore.app.controllers;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
+
+import com.autostore.app.customer.AddCustomer;
 import com.autostore.app.customer.CustomerInvoice;
 import com.autostore.app.customer.SearchCustomer;
 import com.autostore.app.customer.UpdateCustomer;
@@ -57,6 +59,9 @@ public class CustomerController implements Initializable {
     private TextField stateTF;
 
     @FXML
+    private TextField zipCodeTF;
+
+    @FXML
     private Button addButton;
 
     @FXML
@@ -64,6 +69,9 @@ public class CustomerController implements Initializable {
 
     @FXML
     private Button updateButton;
+
+    @FXML
+	private Button clearButton;
 
     @FXML
     private TableView<CustomerTableModel> customerTable;
@@ -88,6 +96,9 @@ public class CustomerController implements Initializable {
 
     @FXML
     private TableColumn<CustomerTableModel, String> stateColumn;
+
+    @FXML
+    private TableColumn<CustomerTableModel, String> zipCodeColumn;
 
     @FXML
     private Tab purchaseHistoryTab;
@@ -166,7 +177,7 @@ public class CustomerController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF};
+		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF, zipCodeTF};
 		
 		searchTypeComboBox.getItems().setAll("Absolute", "Relative");
 		searchTypeComboBox.getSelectionModel().selectFirst();
@@ -179,9 +190,45 @@ public class CustomerController implements Initializable {
 		
 		searchButton.setOnAction(event -> searchCustomer());
 		updateButton.setOnAction(event -> updateCustomer());
+		clearButton.setOnAction(event -> clearForm());
+		addButton.setOnAction(event -> addCustomer());
 	}
 
-	private void fillInvoiceSummaryList() {
+	private void clearForm() {
+	    ApplicationUtils.setTextFieldsEmpty(textFields);
+	    updateButton.setDisable(true);
+	    removeButton.setDisable(true);
+	    addButton.setDisable(false);
+	    custSelectedTableRow = null;
+    }
+
+    private void addCustomer() {
+
+        if(!ApplicationUtils.isTextFieldEmpty(textFields)) {
+
+            AddCustomer addCustomer = new AddCustomer();
+            addCustomer.setFirstName(firstNameTF.getText().trim());
+            addCustomer.setLastName(lastNameTF.getText().trim());
+            addCustomer.setAddress(addressTF.getText().trim());
+            addCustomer.setEmail(emailTF.getText().trim().toLowerCase());
+            addCustomer.setPhone(phoneTF.getText().trim());
+            addCustomer.setCity(cityTF.getText().trim());
+            addCustomer.setState(stateTF.getText().trim());
+            addCustomer.setZipCode(zipCodeTF.getText().trim());
+
+            if(addCustomer.add()) {
+
+                DialogController.showDialog("Add Successful", "Customer: " + addCustomer.getFirstName() +
+                                            " was successfully added.", new Image(DialogController.SUCCESS_ICON));
+                ApplicationUtils.setTextFieldsEmpty(textFields);
+            } else {
+                DialogController.showDialog("Add Failed", "Customer: " + addCustomer.getFirstName() +
+                                            " could not be added, please try again.", new Image(DialogController.ERROR_ICON));
+            }
+        }
+    }
+
+    private void fillInvoiceSummaryList() {
 
 	    invoiceTable.setOnMouseClicked(event ->  {
 
@@ -220,46 +267,53 @@ public class CustomerController implements Initializable {
                         phoneTF.setText(custSelectedTableRow.getPhone());
                         cityTF.setText(custSelectedTableRow.getCity());
                         stateTF.setText(custSelectedTableRow.getState());
+                        zipCodeTF.setText(custSelectedTableRow.getZipCode());
 
                         searchInvoice(custSelectedTableRow.getCustomer_id());
                     }
 				}
 			}
-			
+			addButton.setDisable(true);
 			updateButton.setDisable(false);
+			removeButton.setDisable(false);
 		});
 	}
 	
 	private void updateCustomer() {
-		
-		Alert updateAlert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES, ButtonType.NO);
-		updateAlert.showAndWait();
-		
-		if(updateAlert.getResult() == ButtonType.YES) {
-					
-			UpdateCustomer updateCustomer = new UpdateCustomer();
-			
-			updateCustomer.setCustomerID(custSelectedTableRow.getCustomer_id());
-			updateCustomer.setFirstName(firstNameTF.getText().trim());
-			updateCustomer.setLastName(lastNameTF.getText().trim());
-			updateCustomer.setAddress(addressTF.getText().trim());
-			updateCustomer.setEmail(emailTF.getText().trim());
-			updateCustomer.setPhone(phoneTF.getText().trim());
-			updateCustomer.setCity(cityTF.getText().trim());
-			updateCustomer.setState(stateTF.getText().trim());
-			
-			if(updateCustomer.update()) {
-                DialogController.showDialog("Update Successful", "Customer: " + updateCustomer.getFirstName() +
-                        " was successfully updated.", new Image(DialogController.SUCCESS_ICON));
-                ApplicationUtils.setTextFieldsEmpty(textFields);
-			} else {
-                DialogController.showDialog("Update Failed", "Customer: " + updateCustomer.getFirstName() +
-                        " failed to update.", new Image(DialogController.ERROR_ICON));
+
+	    if(custSelectedTableRow != null) {
+
+            Alert updateAlert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES, ButtonType.NO);
+            updateAlert.showAndWait();
+
+            if (updateAlert.getResult() == ButtonType.YES) {
+
+                UpdateCustomer updateCustomer = new UpdateCustomer();
+
+                updateCustomer.setCustomerID(custSelectedTableRow.getCustomer_id());
+                updateCustomer.setFirstName(firstNameTF.getText().trim());
+                updateCustomer.setLastName(lastNameTF.getText().trim());
+                updateCustomer.setAddress(addressTF.getText().trim());
+                updateCustomer.setEmail(emailTF.getText().trim().toLowerCase());
+                updateCustomer.setPhone(phoneTF.getText().trim());
+                updateCustomer.setCity(cityTF.getText().trim());
+                updateCustomer.setState(stateTF.getText().trim());
+                updateCustomer.setZipCode(zipCodeTF.getText().trim());
+
+                if (updateCustomer.update()) {
+                    DialogController.showDialog("Update Successful", "Customer: " + updateCustomer.getFirstName() +
+                            " was successfully updated.", new Image(DialogController.SUCCESS_ICON));
+                    ApplicationUtils.setTextFieldsEmpty(textFields);
+                    updateButton.setDisable(true);
+                } else {
+                    DialogController.showDialog("Update Failed", "Customer: " + updateCustomer.getFirstName() +
+                            " failed to update.", new Image(DialogController.ERROR_ICON));
+                }
+
+                customerTable.refresh();
+
             }
-			
-			customerTable.refresh();
-			
-		}
+        }
 	}
 	
 	private void searchInvoice(int customerID) {
@@ -312,11 +366,11 @@ public class CustomerController implements Initializable {
 		phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
 		cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
 		stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+        zipCodeColumn.setCellValueFactory(new PropertyValueFactory<>("zipCode"));
 
 	}
 	
 	private void initInvoiceTable() {
-		
 		invoiceIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
 		orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 		discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
@@ -324,7 +378,9 @@ public class CustomerController implements Initializable {
 		taxColumn.setCellValueFactory(new PropertyValueFactory<>("tax"));
 		totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 	}
-	
+
+	//Populates searchBy combobox with string values visible to the user while masking
+	//the sql values associated with each string value
 	private void initSearchByComboBox() {
 		
 		ObservableList<SearchByCBModel> searchByValues = FXCollections.observableArrayList(
@@ -334,7 +390,8 @@ public class CustomerController implements Initializable {
 				new SearchByCBModel("Email", "email"),
 				new SearchByCBModel("Phone", "phone"),
 				new SearchByCBModel("City", "city"),
-				new SearchByCBModel("State", "state"));
+				new SearchByCBModel("State", "state"),
+                new SearchByCBModel("Zip Code", "zip_code"));
 
 		searchByComboBox.getItems().addAll(searchByValues);
 		searchByComboBox.getSelectionModel().selectFirst();

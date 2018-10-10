@@ -5,9 +5,18 @@ import javafx.scene.control.TextField;
 public class ApplicationUtils {
 	
 	public static void setTextFieldsEmpty(TextField[] textFields) {
-		for(TextField textField :textFields) {
+		for(TextField textField : textFields) {
 			textField.clear();
 		}
+	}
+
+	public static boolean isTextFieldEmpty(TextField[] textFields) {
+		for(TextField textField : textFields) {
+			if(textField.getText().isEmpty()) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static boolean isEmailValid(String email) {
