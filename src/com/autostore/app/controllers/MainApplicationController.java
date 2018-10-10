@@ -71,7 +71,17 @@ public class MainApplicationController implements Initializable {
 		});
 		
 		supplierButton.setOnAction(event -> {
-			//load supplier pane
+			try {
+
+				FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("com/autostore/app/fxml/supplier_window.fxml"));
+				Region child = loader.load();
+				contentPane.getChildren().add(child);
+				child.prefHeightProperty().bind(contentPane.heightProperty());
+				child.prefWidthProperty().bind(contentPane.widthProperty());
+
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		});
 		
 		inventoryButton.setOnAction(event -> {
