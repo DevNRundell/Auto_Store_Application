@@ -65,9 +65,6 @@ public class CustomerController implements Initializable {
     private Button addButton;
 
     @FXML
-    private Button removeButton;
-
-    @FXML
     private Button updateButton;
 
     @FXML
@@ -197,7 +194,6 @@ public class CustomerController implements Initializable {
 	private void clearForm() {
 	    ApplicationUtils.setTextFieldsEmpty(textFields);
 	    updateButton.setDisable(true);
-	    removeButton.setDisable(true);
 	    addButton.setDisable(false);
 	    custSelectedTableRow = null;
     }
@@ -275,7 +271,6 @@ public class CustomerController implements Initializable {
 			}
 			addButton.setDisable(true);
 			updateButton.setDisable(false);
-			removeButton.setDisable(false);
 		});
 	}
 	
