@@ -3,6 +3,8 @@ package com.autostore.app.controllers;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
+
+import com.autostore.app.customer.AddCustomer;
 import com.autostore.app.customer.CustomerInvoice;
 import com.autostore.app.customer.SearchCustomer;
 import com.autostore.app.customer.UpdateCustomer;
@@ -189,6 +191,7 @@ public class CustomerController implements Initializable {
 		searchButton.setOnAction(event -> searchCustomer());
 		updateButton.setOnAction(event -> updateCustomer());
 		clearButton.setOnAction(event -> clearForm());
+		addButton.setOnAction(event -> addCustomer());
 	}
 
 	private void clearForm() {
@@ -199,7 +202,33 @@ public class CustomerController implements Initializable {
 	    custSelectedTableRow = null;
     }
 
-	private void fillInvoiceSummaryList() {
+    private void addCustomer() {
+
+        if(!ApplicationUtils.isTextFieldEmpty(textFields)) {
+
+            AddCustomer addCustomer = new AddCustomer();
+            addCustomer.setFirstName(firstNameTF.getText().trim());
+            addCustomer.setLastName(lastNameTF.getText().trim());
+            addCustomer.setAddress(addressTF.getText().trim());
+            addCustomer.setEmail(emailTF.getText().trim().toLowerCase());
+            addCustomer.setPhone(phoneTF.getText().trim());
+            addCustomer.setCity(cityTF.getText().trim());
+            addCustomer.setState(stateTF.getText().trim());
+            addCustomer.setZipCode(zipCodeTF.getText().trim());
+
+            if(addCustomer.add()) {
+
+                DialogController.showDialog("Add Successful", "Customer: " + addCustomer.getFirstName() +
+                                            " was successfully added.", new Image(DialogController.SUCCESS_ICON));
+                ApplicationUtils.setTextFieldsEmpty(textFields);
+            } else {
+                DialogController.showDialog("Add Failed", "Customer: " + addCustomer.getFirstName() +
+                                            " could not be added, please try again.", new Image(DialogController.ERROR_ICON));
+            }
+        }
+    }
+
+    private void fillInvoiceSummaryList() {
 
 	    invoiceTable.setOnMouseClicked(event ->  {
 
@@ -342,7 +371,6 @@ public class CustomerController implements Initializable {
 	}
 	
 	private void initInvoiceTable() {
-		
 		invoiceIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
 		orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 		discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
