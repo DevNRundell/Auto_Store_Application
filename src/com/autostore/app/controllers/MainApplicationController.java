@@ -71,7 +71,6 @@ public class MainApplicationController implements Initializable {
 		});
 		
 		supplierButton.setOnAction(event -> {
-			//load supplier pane
 			try {
 
 				FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("com/autostore/app/fxml/supplier_window.fxml"));

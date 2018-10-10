@@ -3,12 +3,11 @@ package com.autostore.app.customer;
 import com.autostore.app.controllers.DialogController;
 import com.autostore.app.database.DBConnect;
 import com.autostore.app.database.DBUtils;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AddCustomer extends Customer{
+public class AddCustomer extends Customer {
 
     public boolean add() {
 
