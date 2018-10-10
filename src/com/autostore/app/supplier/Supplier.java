@@ -1,4 +1,4 @@
-package supplier;
+package com.autostore.app.supplier;
 
 public abstract class Supplier {
 

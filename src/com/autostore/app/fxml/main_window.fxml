@@ -19,7 +19,7 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="supplierButton" mnemonicParsing="false" text="supplier" HBox.hgrow="ALWAYS">
+            <Button fx:id="supplierButton" mnemonicParsing="false" text="com.autostore.app.supplier" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
