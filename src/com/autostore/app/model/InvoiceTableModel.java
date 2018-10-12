@@ -47,4 +47,13 @@ public class InvoiceTableModel extends CustomerTableModel {
 	public void setTotal(double total) {
 		this.total = total;
 	}
+
+	public boolean submitOrder(int customerID) {
+		string orderQuery = "INSERT INTO customer_order (customer_id, total, tax, subtotal, discount, date) VALUES (" +
+				customerID + "," +  this.total + "," + this.tax + "," + this.subtotal + "," +
+				this.discount + "," + this.date + ")";
+		DBUtils dbUtils = new DBUtils();
+		boolean queryResult = dbUtils.runQuery(orderQuery);
+		return queryResult;
+	}
 }
