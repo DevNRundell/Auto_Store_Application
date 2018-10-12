@@ -3,11 +3,8 @@ package com.autostore.app.controllers;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
-
-import com.autostore.app.customer.AddCustomer;
-import com.autostore.app.customer.CustomerInvoice;
-import com.autostore.app.customer.SearchCustomer;
-import com.autostore.app.customer.UpdateCustomer;
+import com.autostore.app.customer.*;
+import com.autostore.app.model.InvoiceListViewModel;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.model.CustomerTableModel;
 import com.autostore.app.model.InvoiceTableModel;
@@ -101,7 +98,7 @@ public class CustomerController implements Initializable {
     private Tab purchaseHistoryTab;
 
 	@FXML
-	private ListView<?> invoiceSumListView;
+	private ListView<InvoiceListViewModel> invoiceSumListView;
 
 	@FXML
 	private Label invoiceDiscountLabel;
@@ -150,24 +147,6 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private Tab newOrderTab;
-
-	@FXML
-	private ListView<?> orderSumListView;
-
-	@FXML
-	private Label orderDiscountLabel;
-
-	@FXML
-	private ComboBox<?> orderDiscountCB;
-
-	@FXML
-	private Label orderSubTotalLabel;
-
-	@FXML
-	private Label orderTaxesLabel;
-
-	@FXML
-	private Label orderTotalLabel;
     private TextField[] textFields;
     private CustomerTableModel custSelectedTableRow;
     
@@ -176,7 +155,7 @@ public class CustomerController implements Initializable {
 		
 		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF, zipCodeTF};
 		
-		searchTypeComboBox.getItems().setAll("Absolute", "Relative");
+		searchTypeComboBox.getItems().setAll("Relative", "Absolute");
 		searchTypeComboBox.getSelectionModel().selectFirst();
 		
 		initCustomerTable();
@@ -184,11 +163,13 @@ public class CustomerController implements Initializable {
 		initSearchByComboBox();
         fillCustomerDataForm();
         fillInvoiceSummaryList();
+        setInvoiceListViewCustomCell();
 		
 		searchButton.setOnAction(event -> searchCustomer());
 		updateButton.setOnAction(event -> updateCustomer());
 		clearButton.setOnAction(event -> clearForm());
 		addButton.setOnAction(event -> addCustomer());
+
 	}
 
 	private void clearForm() {
@@ -236,8 +217,15 @@ public class CustomerController implements Initializable {
 
 	                if(invSelectedTableRow != null) {
 
-	                    //invoiceSumListView.getItems().
+                        CustomerInvoiceData invoiceData = new CustomerInvoiceData();
+                        invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
 
+                        invoiceSumListView.setItems(invoiceData.getInvoiceData());
+
+                        invoiceDiscountLabel.setText(invoiceDiscountLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getDiscount()));
+                        invoiceSubTotalLabel.setText(invoiceSubTotalLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getSubTotal()));
+                        invoiceTaxesLabel.setText(invoiceTaxesLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getTax()));
+                        invoiceTotalLabel.setText(invoiceTotalLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getTotal()));
                     }
                 }
             }
@@ -334,11 +322,11 @@ public class CustomerController implements Initializable {
 		SearchCustomer customer = new SearchCustomer();
 
 		if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
-			searchValue = searchTF.getText().trim();
-			query = "select * from customer_info where " + searchByValue + " = ?";
-		} else {
 			searchValue = "%" + searchTF.getText().trim() + "%";
-			query = "select * from customer_info where " + searchByValue + " like ?";
+            query = "select * from customer_info where " + searchByValue + " like ?";
+		} else {
+            searchValue = searchTF.getText().trim();
+            query = "select * from customer_info where " + searchByValue + " = ?";
 		}
 			
 		customer.searchCustomerData(query, searchValue);
@@ -412,21 +400,28 @@ public class CustomerController implements Initializable {
         });
 	}
 
-	/*private void initInvoiceListView(InvoiceTableModel invoiceModel) {
+	private void setInvoiceListViewCustomCell() {
 
-        invoiceSumListView.setCellFactory(new ListCell<>(){
+        invoiceSumListView.setCellFactory(new Callback<>() {
 
             @Override
-            public void updateItem(String string, boolean empty)
-            {
-                super.updateItem(string,empty);
+            public ListCell<InvoiceListViewModel> call(ListView<InvoiceListViewModel> param) {
+                return new ListCell<>() {
 
-                if(empty) {
-                    setText(invoiceModel);
-                }
+                    @Override
+                    protected void updateItem(InvoiceListViewModel item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null) {
+                            setText("Item: " + item.getName() + "\n" +
+                                    "Description: " + item.getDescription() + "\n" +
+                                    "Quantity Ordered: " + item.getQtyOrdered());
+                        }
+                    }
+                };
             }
         });
-    }*/
+
+    }
 }
 
 

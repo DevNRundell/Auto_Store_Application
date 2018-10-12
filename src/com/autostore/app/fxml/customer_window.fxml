@@ -236,7 +236,7 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ListView>
-                              <Label fx:id="orderDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
+                              <Label fx:id="invoiceDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
