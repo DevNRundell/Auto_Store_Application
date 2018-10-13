@@ -83,7 +83,7 @@ public class DialogController implements Initializable {
 			controller.errorTitleLabel.setText(title);
 
 			for(String message: messages) {
-				stringBuilder.append("\u2022" + message + "\n");
+				stringBuilder.append("\u2022").append(message).append("\n");
 			}
 			
 			controller.errorMessageTextArea.setText(stringBuilder.toString());

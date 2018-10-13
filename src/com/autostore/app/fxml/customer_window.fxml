@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -161,17 +162,20 @@
                         <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1200.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <Label layoutX="20.0" layoutY="626.0" text="Invoice Summary:" />
-                              <ListView fx:id="invoiceSumListView" VBox.vgrow="SOMETIMES">
+                              <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets top="10.0" />
                                  </VBox.margin>
-                              </ListView>
+                                 <content>
+                                    <ListView fx:id="invoiceSumListView" />
+                                 </content>
+                              </ScrollPane>
                               <Label fx:id="invoiceDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
                                  <padding>
                                     <Insets top="10.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="invoiceSubTotalLabel" text="Sub Total:">
+                              <Label fx:id="invoiceSubTotalLabel" text="Sub-Total:">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -179,7 +183,7 @@
                                     <Insets top="10.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="invoiceTaxesLabel" layoutX="20.0" layoutY="508.0" text="Taxes:">
+                              <Label fx:id="invoiceTaxesLabel" layoutX="20.0" layoutY="508.0" text="Tax:">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -236,11 +240,6 @@
                                     <Insets top="10.0" />
                                  </VBox.margin>
                               </ListView>
-                              <Label fx:id="invoiceDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
                               <ComboBox fx:id="orderDiscountCB" prefWidth="150.0" />
                               <Label fx:id="orderSubTotalLabel" text="Sub Total:">
                                  <VBox.margin>

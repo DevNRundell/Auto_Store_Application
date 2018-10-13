@@ -167,16 +167,28 @@ public class CustomerController implements Initializable {
 		
 		searchButton.setOnAction(event -> searchCustomer());
 		updateButton.setOnAction(event -> updateCustomer());
-		clearButton.setOnAction(event -> clearForm());
+		clearButton.setOnAction(event -> clearCustomerForm());
 		addButton.setOnAction(event -> addCustomer());
+
+
 
 	}
 
-	private void clearForm() {
+	private void clearCustomerForm() {
 	    ApplicationUtils.setTextFieldsEmpty(textFields);
 	    updateButton.setDisable(true);
 	    addButton.setDisable(false);
 	    custSelectedTableRow = null;
+	    clearInvoiceHistoryForm();
+	    invoiceTable.getItems().clear();
+    }
+
+    private void clearInvoiceHistoryForm() {
+        invoiceDiscountLabel.setText("Discount:");
+        invoiceSubTotalLabel.setText("Sub-Total:");
+        invoiceTaxesLabel.setText("Tax:");
+        invoiceTotalLabel.setText("Total:");
+        invoiceSumListView.getItems().clear();
     }
 
     private void addCustomer() {
@@ -194,7 +206,6 @@ public class CustomerController implements Initializable {
             addCustomer.setZipCode(zipCodeTF.getText().trim());
 
             if(addCustomer.add()) {
-
                 DialogController.showDialog("Add Successful", "Customer: " + addCustomer.getFirstName() +
                                             " was successfully added.", new Image(DialogController.SUCCESS_ICON));
                 ApplicationUtils.setTextFieldsEmpty(textFields);
@@ -220,12 +231,15 @@ public class CustomerController implements Initializable {
                         CustomerInvoiceData invoiceData = new CustomerInvoiceData();
                         invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
 
-                        invoiceSumListView.setItems(invoiceData.getInvoiceData());
+                        if(invoiceData.getInvoiceData() != null) {
 
-                        invoiceDiscountLabel.setText(invoiceDiscountLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getDiscount()));
-                        invoiceSubTotalLabel.setText(invoiceSubTotalLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getSubTotal()));
-                        invoiceTaxesLabel.setText(invoiceTaxesLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getTax()));
-                        invoiceTotalLabel.setText(invoiceTotalLabel.getText() + " $" + String.valueOf(invSelectedTableRow.getTotal()));
+                            invoiceSumListView.setItems(invoiceData.getInvoiceData());
+
+                            invoiceDiscountLabel.setText("Discount: $" + String.valueOf(invSelectedTableRow.getDiscount()));
+                            invoiceSubTotalLabel.setText("Sub-Total: $" + String.valueOf(invSelectedTableRow.getSubTotal()));
+                            invoiceTaxesLabel.setText("Tax: $" + String.valueOf(invSelectedTableRow.getTax()));
+                            invoiceTotalLabel.setText("Total: $" + String.valueOf(invSelectedTableRow.getTotal()));
+                        }
                     }
                 }
             }
@@ -259,6 +273,7 @@ public class CustomerController implements Initializable {
 			}
 			addButton.setDisable(true);
 			updateButton.setDisable(false);
+			clearInvoiceHistoryForm();
 		});
 	}
 	
@@ -294,7 +309,6 @@ public class CustomerController implements Initializable {
                 }
 
                 customerTable.refresh();
-
             }
         }
 	}
@@ -318,8 +332,6 @@ public class CustomerController implements Initializable {
 		String query, searchValue;
 		
 		String searchByValue = searchByComboBox.getSelectionModel().getSelectedItem().getSqlValue();
-			
-		SearchCustomer customer = new SearchCustomer();
 
 		if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
 			searchValue = "%" + searchTF.getText().trim() + "%";
@@ -328,7 +340,8 @@ public class CustomerController implements Initializable {
             searchValue = searchTF.getText().trim();
             query = "select * from customer_info where " + searchByValue + " = ?";
 		}
-			
+
+        SearchCustomer customer = new SearchCustomer();
 		customer.searchCustomerData(query, searchValue);
 				
 		if(!customer.getCustomerData().isEmpty()) {
@@ -338,6 +351,8 @@ public class CustomerController implements Initializable {
 		}
 		
 		updateButton.setDisable(true);
+        invoiceTable.getItems().clear();
+		clearInvoiceHistoryForm();
 	}
 	
 	private void initCustomerTable() {
@@ -362,7 +377,7 @@ public class CustomerController implements Initializable {
 		totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 	}
 
-	//Populates searchBy combobox with string values visible to the user while masking
+	//Populates searchBy combo-box with string values visible to the user while masking
 	//the sql values associated with each string value
 	private void initSearchByComboBox() {
 		
@@ -414,13 +429,14 @@ public class CustomerController implements Initializable {
                         if (item != null) {
                             setText("Item: " + item.getName() + "\n" +
                                     "Description: " + item.getDescription() + "\n" +
-                                    "Quantity Ordered: " + item.getQtyOrdered());
+                                    "Quantity: " + item.getQtyOrdered());
+                        } else {
+                            setText(null);
                         }
                     }
                 };
             }
         });
-
     }
 }
 
