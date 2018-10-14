@@ -1,21 +1,22 @@
 package com.autostore.app.model;
 
-public class SupplierTableModel {
-	
-	private String companyName;
+import com.autostore.app.supplier.Supplier;
+
+public class SupplierTableModel extends Supplier {
+
+	private int supplier_id;
+	private String name;
 	private String contactName;
-	
-	public String getCompanyName() {
-		return companyName;
+
+	public int getSupplier_id() {
+		return supplier_id;
 	}
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setSupplier_id(int supplier_id) {
+		this.supplier_id = supplier_id;
 	}
-	public String getContactName() {
-		return contactName;
-	}
-	public void setContactName(String contactName) {
-		this.contactName = contactName;
-	}
+	public String getName() {return name;}
+	public void setName(String name) {this.name = name;	}
+//	public String getContactName() {return contactName;}
+//	public void setContactName(String contactName) {this.contactName = contactName;}
 
 }

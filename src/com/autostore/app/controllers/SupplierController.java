@@ -1,17 +1,20 @@
 package com.autostore.app.controllers;
 
+import com.autostore.app.model.SearchByCBModel;
+import com.autostore.app.model.SupplierTableModel;
+import com.autostore.app.supplier.SearchSupplier;
+import com.autostore.app.utils.ApplicationUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.util.Callback;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 
 public class SupplierController implements Initializable {
 
@@ -52,28 +55,28 @@ public class SupplierController implements Initializable {
     private Button clearButton;
 
     @FXML
-    private TableView<?> supplierTable;
+    private TableView<SupplierTableModel> supplierTable;
 
     @FXML
-    private TableColumn<?, ?> nameColumn;
+    private TableColumn<SupplierTableModel, String> nameColumn;
 
     @FXML
-    private TableColumn<?, ?> addressColumn;
+    private TableColumn<SupplierTableModel, String> addressColumn;
 
     @FXML
-    private TableColumn<?, ?> cityColumn;
+    private TableColumn<SupplierTableModel, String> cityColumn;
 
     @FXML
-    private TableColumn<?, ?> stateColumn;
+    private TableColumn<SupplierTableModel, String> stateColumn;
 
     @FXML
-    private TableColumn<?, ?> emailColumn;
+    private TableColumn<SupplierTableModel, String> emailColumn;
 
     @FXML
-    private TableColumn<?, ?> phoneColumn;
+    private TableColumn<SupplierTableModel, String> phoneColumn;
 
     @FXML
-    private TableColumn<?, ?> contactColumn;
+    private TableColumn<SupplierTableModel, String> contactColumn;
 
     @FXML
     private Tab purchaseHistoryTab;
@@ -121,15 +124,111 @@ public class SupplierController implements Initializable {
     private Button searchButton;
 
     @FXML
-    private ComboBox<?> searchTypeComboBox;
+    private ComboBox<String> searchTypeComboBox;
 
     @FXML
-    private ComboBox<?> searchByComboBox;
+    private ComboBox<String> searchByComboBox;
+
+    private TextField[] textFields;
+    private SupplierTableModel suppSelectedTableRow;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL arg0, ResourceBundle arg1) {
 
+        textFields = new TextField[]{nameTF, addressTF, emailTF, phoneTF, cityTF, stateTF, contactNameTF};
+
+        searchTypeComboBox.getItems().setAll("Absolute", "Relative");
+        searchTypeComboBox.getSelectionModel().selectFirst();
+
+        initSupplierTable();
+        initSearchComboBox();
+        //initInvoiceTable();
+        //fillSupplierDataForm();
+       // fillInvoiceSummaryList();
+
+        searchButton.setOnAction(event -> searchSupplier());
+        clearButton.setOnAction(event -> clearForm());
+       // addButton.setOnAction(event -> addSupplier());
 
 
     }
 }
+
+    private void initSupplierTable() {
+
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
+        cityColumn.setCellValueFactory(new PropertyValueFactory<>("city"));
+        stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        contactNameColumn.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+
+    }
+
+    private void clearForm() {
+        ApplicationUtils.setTextFieldsEmpty(textFields);
+        updateButton.setDisable(true);
+        removeButton.setDisable(true);
+        addButton.setDisable(false);
+        suppSelectedTableRow = null;
+    }
+
+    private void initSearchComboBox() {
+
+        ObservableList<SearchByCBModel> searchValues = FXCollections.observableArrayList(
+                new SearchByCBModel("Name", "name"),
+                new SearchByCBModel("Email", "email"),
+                new SearchByCBModel("Phone", "phone"));
+
+        searchByComboBox.getItems().addAll(searchValues);
+        searchByComboBox.getSelectionModel().selectFirst();
+        searchByComboBox.setCellFactory(new Callback<>(){
+
+            @Override
+            public ListCell<SearchByCBModel> call(ListView<SearchByCBModel> p) {
+
+                return new ListCell<>(){
+
+                    @Override
+                    protected void updateItem(SearchByCBModel t, boolean bln) {
+                        super.updateItem(t, bln);
+
+                        if(t != null){
+                            setText(t.getSearchValue());
+                        }else{
+                            setText(null);
+                        }
+                    }
+                };
+            }
+        });
+    }
+
+    private void searchSupplier() {
+
+        ApplicationUtils.setTextFieldsEmpty(textFields);
+        String query, searchValue;
+
+        String searchByValue = searchByComboBox.getSelectionModel().getSelectedItem().getSqlValue();
+
+        SearchSupplier supplier = new SearchSupplier();
+
+        if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
+            searchValue = searchTF.getText().trim();
+            query = "select * from supplier where " + searchByValue + " = ?";
+        } else {
+            searchValue = "%" + searchTF.getText().trim() + "%";
+            query = "select * from supplier where " + searchByValue + " like ?";
+        }
+
+        supplier.searchSupplierData(query, searchValue);
+
+        if(!supplier.getSupplierData().isEmpty()) {
+            supplierTable.setItems(supplier.getSupplierData());
+        } else {
+            supplierTable.getItems().clear();
+        }
+
+        updateButton.setDisable(true);
+    }
