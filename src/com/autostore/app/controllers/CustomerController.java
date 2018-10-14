@@ -3,11 +3,8 @@ package com.autostore.app.controllers;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
-
-import com.autostore.app.customer.AddCustomer;
-import com.autostore.app.customer.CustomerInvoice;
-import com.autostore.app.customer.SearchCustomer;
-import com.autostore.app.customer.UpdateCustomer;
+import com.autostore.app.customer.*;
+import com.autostore.app.model.InvoiceListViewModel;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.model.CustomerTableModel;
 import com.autostore.app.model.InvoiceTableModel;
@@ -65,9 +62,6 @@ public class CustomerController implements Initializable {
     private Button addButton;
 
     @FXML
-    private Button removeButton;
-
-    @FXML
     private Button updateButton;
 
     @FXML
@@ -104,7 +98,7 @@ public class CustomerController implements Initializable {
     private Tab purchaseHistoryTab;
 
 	@FXML
-	private ListView<?> invoiceSumListView;
+	private ListView<InvoiceListViewModel> invoiceSumListView;
 
 	@FXML
 	private Label invoiceDiscountLabel;
@@ -153,24 +147,6 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private Tab newOrderTab;
-
-	@FXML
-	private ListView<?> orderSumListView;
-
-	@FXML
-	private Label orderDiscountLabel;
-
-	@FXML
-	private ComboBox<?> orderDiscountCB;
-
-	@FXML
-	private Label orderSubTotalLabel;
-
-	@FXML
-	private Label orderTaxesLabel;
-
-	@FXML
-	private Label orderTotalLabel;
     private TextField[] textFields;
     private CustomerTableModel custSelectedTableRow;
     
@@ -179,7 +155,7 @@ public class CustomerController implements Initializable {
 		
 		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF, zipCodeTF};
 		
-		searchTypeComboBox.getItems().setAll("Absolute", "Relative");
+		searchTypeComboBox.getItems().setAll("Relative", "Absolute");
 		searchTypeComboBox.getSelectionModel().selectFirst();
 		
 		initCustomerTable();
@@ -187,19 +163,32 @@ public class CustomerController implements Initializable {
 		initSearchByComboBox();
         fillCustomerDataForm();
         fillInvoiceSummaryList();
+        setInvoiceListViewCustomCell();
 		
 		searchButton.setOnAction(event -> searchCustomer());
 		updateButton.setOnAction(event -> updateCustomer());
-		clearButton.setOnAction(event -> clearForm());
+		clearButton.setOnAction(event -> clearCustomerForm());
 		addButton.setOnAction(event -> addCustomer());
+
+
+
 	}
 
-	private void clearForm() {
+	private void clearCustomerForm() {
 	    ApplicationUtils.setTextFieldsEmpty(textFields);
 	    updateButton.setDisable(true);
-	    removeButton.setDisable(true);
 	    addButton.setDisable(false);
 	    custSelectedTableRow = null;
+	    clearInvoiceHistoryForm();
+	    invoiceTable.getItems().clear();
+    }
+
+    private void clearInvoiceHistoryForm() {
+        invoiceDiscountLabel.setText("Discount:");
+        invoiceSubTotalLabel.setText("Sub-Total:");
+        invoiceTaxesLabel.setText("Tax:");
+        invoiceTotalLabel.setText("Total:");
+        invoiceSumListView.getItems().clear();
     }
 
     private void addCustomer() {
@@ -217,7 +206,6 @@ public class CustomerController implements Initializable {
             addCustomer.setZipCode(zipCodeTF.getText().trim());
 
             if(addCustomer.add()) {
-
                 DialogController.showDialog("Add Successful", "Customer: " + addCustomer.getFirstName() +
                                             " was successfully added.", new Image(DialogController.SUCCESS_ICON));
                 ApplicationUtils.setTextFieldsEmpty(textFields);
@@ -240,8 +228,18 @@ public class CustomerController implements Initializable {
 
 	                if(invSelectedTableRow != null) {
 
-	                    //invoiceSumListView.getItems().
+                        CustomerInvoiceData invoiceData = new CustomerInvoiceData();
+                        invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
 
+                        if(invoiceData.getInvoiceData() != null) {
+
+                            invoiceSumListView.setItems(invoiceData.getInvoiceData());
+
+                            invoiceDiscountLabel.setText("Discount: $" + String.valueOf(invSelectedTableRow.getDiscount()));
+                            invoiceSubTotalLabel.setText("Sub-Total: $" + String.valueOf(invSelectedTableRow.getSubTotal()));
+                            invoiceTaxesLabel.setText("Tax: $" + String.valueOf(invSelectedTableRow.getTax()));
+                            invoiceTotalLabel.setText("Total: $" + String.valueOf(invSelectedTableRow.getTotal()));
+                        }
                     }
                 }
             }
@@ -275,7 +273,7 @@ public class CustomerController implements Initializable {
 			}
 			addButton.setDisable(true);
 			updateButton.setDisable(false);
-			removeButton.setDisable(false);
+			clearInvoiceHistoryForm();
 		});
 	}
 	
@@ -311,7 +309,6 @@ public class CustomerController implements Initializable {
                 }
 
                 customerTable.refresh();
-
             }
         }
 	}
@@ -335,17 +332,16 @@ public class CustomerController implements Initializable {
 		String query, searchValue;
 		
 		String searchByValue = searchByComboBox.getSelectionModel().getSelectedItem().getSqlValue();
-			
-		SearchCustomer customer = new SearchCustomer();
 
 		if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
-			searchValue = searchTF.getText().trim();
-			query = "select * from customer_info where " + searchByValue + " = ?";
-		} else {
 			searchValue = "%" + searchTF.getText().trim() + "%";
-			query = "select * from customer_info where " + searchByValue + " like ?";
+            query = "select * from customer_info where " + searchByValue + " like ?";
+		} else {
+            searchValue = searchTF.getText().trim();
+            query = "select * from customer_info where " + searchByValue + " = ?";
 		}
-			
+
+        SearchCustomer customer = new SearchCustomer();
 		customer.searchCustomerData(query, searchValue);
 				
 		if(!customer.getCustomerData().isEmpty()) {
@@ -355,6 +351,8 @@ public class CustomerController implements Initializable {
 		}
 		
 		updateButton.setDisable(true);
+        invoiceTable.getItems().clear();
+		clearInvoiceHistoryForm();
 	}
 	
 	private void initCustomerTable() {
@@ -379,7 +377,7 @@ public class CustomerController implements Initializable {
 		totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 	}
 
-	//Populates searchBy combobox with string values visible to the user while masking
+	//Populates searchBy combo-box with string values visible to the user while masking
 	//the sql values associated with each string value
 	private void initSearchByComboBox() {
 		
@@ -417,21 +415,29 @@ public class CustomerController implements Initializable {
         });
 	}
 
-	/*private void initInvoiceListView(InvoiceTableModel invoiceModel) {
+	private void setInvoiceListViewCustomCell() {
 
-        invoiceSumListView.setCellFactory(new ListCell<>(){
+        invoiceSumListView.setCellFactory(new Callback<>() {
 
             @Override
-            public void updateItem(String string, boolean empty)
-            {
-                super.updateItem(string,empty);
+            public ListCell<InvoiceListViewModel> call(ListView<InvoiceListViewModel> param) {
+                return new ListCell<>() {
 
-                if(empty) {
-                    setText(invoiceModel);
-                }
+                    @Override
+                    protected void updateItem(InvoiceListViewModel item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null) {
+                            setText("Item: " + item.getName() + "\n" +
+                                    "Description: " + item.getDescription() + "\n" +
+                                    "Quantity: " + item.getQtyOrdered());
+                        } else {
+                            setText(null);
+                        }
+                    }
+                };
             }
         });
-    }*/
+    }
 }
 
 

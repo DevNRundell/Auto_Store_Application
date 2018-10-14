@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="root" stylesheets="com/autostore/app/css/Theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.autostore.app.controllers.MainApplicationController">
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" styleClass="root" stylesheets="/com/autostore/app/css/Theme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.autostore.app.controllers.MainApplicationController">
    <cursor>
       <Cursor fx:constant="DEFAULT" />
    </cursor>
@@ -19,7 +19,7 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="supplierButton" mnemonicParsing="false" text="supplier" HBox.hgrow="ALWAYS">
+            <Button fx:id="supplierButton" mnemonicParsing="false" text="com.autostore.app.supplier" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="15.0" />
                </HBox.margin>
