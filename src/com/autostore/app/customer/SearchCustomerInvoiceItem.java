@@ -3,7 +3,7 @@ package com.autostore.app.customer;
 import com.autostore.app.controllers.DialogController;
 import com.autostore.app.database.DBConnect;
 import com.autostore.app.database.DBUtils;
-import com.autostore.app.model.InvoiceListViewModel;
+import com.autostore.app.model.CustomerInvoiceListModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.Connection;
@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CustomerInvoiceData {
+public class SearchCustomerInvoiceItem {
 
-    private ObservableList<InvoiceListViewModel> invoiceData = FXCollections.observableArrayList();
+    private ObservableList<CustomerInvoiceListModel> invoiceData = FXCollections.observableArrayList();
 
     public void searchInvoiceItemData(int orderID) {
 
@@ -58,14 +58,14 @@ public class CustomerInvoiceData {
 
                         if (resultSet2.next()) {
 
-                            InvoiceListViewModel invoiceListViewModel = new InvoiceListViewModel();
+                            CustomerInvoiceListModel customerInvoiceListModel = new CustomerInvoiceListModel();
 
-                            invoiceListViewModel.setInventoryID(resultSet2.getInt("inventory_id"));
-                            invoiceListViewModel.setName(resultSet2.getString("name"));
-                            invoiceListViewModel.setDescription(resultSet2.getString("description"));
-                            invoiceListViewModel.setQtyOrdered(invMap.get(id));
+                            customerInvoiceListModel.setInventoryID(resultSet2.getInt("inventory_id"));
+                            customerInvoiceListModel.setName(resultSet2.getString("name"));
+                            customerInvoiceListModel.setDescription(resultSet2.getString("description"));
+                            customerInvoiceListModel.setQtyOrdered(invMap.get(id));
 
-                            invoiceData.add(invoiceListViewModel);
+                            invoiceData.add(customerInvoiceListModel);
 
                         }
                     }
@@ -84,7 +84,7 @@ public class CustomerInvoiceData {
         }
     }
 
-    public ObservableList<InvoiceListViewModel> getInvoiceData() {
+    public ObservableList<CustomerInvoiceListModel> getInvoiceData() {
         return invoiceData;
     }
 }

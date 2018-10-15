@@ -1,6 +1,6 @@
 package com.autostore.app.model;
 
-public class InvoiceListViewModel {
+public class CustomerInvoiceListModel {
 
     private int inventoryID;
     private String name;
@@ -10,31 +10,24 @@ public class InvoiceListViewModel {
     public int getQtyOrdered() {
         return qtyOrdered;
     }
-
     public void setQtyOrdered(int qtyOrdered) {
         this.qtyOrdered = qtyOrdered;
     }
-
     public int getInventoryID() {
         return inventoryID;
     }
-
     public void setInventoryID(int inventoryID) {
         this.inventoryID = inventoryID;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }

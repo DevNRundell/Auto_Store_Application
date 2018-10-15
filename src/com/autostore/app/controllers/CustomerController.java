@@ -4,10 +4,9 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
 import com.autostore.app.customer.*;
-import com.autostore.app.model.InvoiceListViewModel;
+import com.autostore.app.model.CustomerInvoiceListModel;
 import com.autostore.app.model.SearchByCBModel;
-import com.autostore.app.model.CustomerTableModel;
-import com.autostore.app.model.InvoiceTableModel;
+import com.autostore.app.customer.CustomerInvoice;
 import com.autostore.app.utils.ApplicationUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,37 +67,37 @@ public class CustomerController implements Initializable {
 	private Button clearButton;
 
     @FXML
-    private TableView<CustomerTableModel> customerTable;
+    private TableView<Customer> customerTable;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> firstNameColumn;
+    private TableColumn<Customer, String> firstNameColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> lastNameColumn;
+    private TableColumn<Customer, String> lastNameColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> addressColumn;
+    private TableColumn<Customer, String> addressColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> emailColumn;
+    private TableColumn<Customer, String> emailColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> phoneColumn;
+    private TableColumn<Customer, String> phoneColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> cityColumn;
+    private TableColumn<Customer, String> cityColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> stateColumn;
+    private TableColumn<Customer, String> stateColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> zipCodeColumn;
+    private TableColumn<Customer, String> zipCodeColumn;
 
     @FXML
     private Tab purchaseHistoryTab;
 
 	@FXML
-	private ListView<InvoiceListViewModel> invoiceSumListView;
+	private ListView<CustomerInvoiceListModel> invoiceSumListView;
 
 	@FXML
 	private Label invoiceDiscountLabel;
@@ -113,25 +112,25 @@ public class CustomerController implements Initializable {
 	private Label invoiceTotalLabel;
 
     @FXML
-    private TableView<InvoiceTableModel> invoiceTable;
+    private TableView<CustomerInvoice> invoiceTable;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Integer> invoiceIDColumn;
+    private TableColumn<CustomerInvoice, Integer> invoiceIDColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Date> orderDateColumn;
+    private TableColumn<CustomerInvoice, Date> orderDateColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> discountColumn;
+    private TableColumn<CustomerInvoice, Double> discountColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> subTotalColumn;
+    private TableColumn<CustomerInvoice, Double> subTotalColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> taxColumn;
+    private TableColumn<CustomerInvoice, Double> taxColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> totalColumn;
+    private TableColumn<CustomerInvoice, Double> totalColumn;
 
     @FXML
     private TextField searchTF;
@@ -148,7 +147,7 @@ public class CustomerController implements Initializable {
 	@FXML
 	private Tab newOrderTab;
     private TextField[] textFields;
-    private CustomerTableModel custSelectedTableRow;
+    private Customer custSelectedTableRow;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -169,9 +168,6 @@ public class CustomerController implements Initializable {
 		updateButton.setOnAction(event -> updateCustomer());
 		clearButton.setOnAction(event -> clearCustomerForm());
 		addButton.setOnAction(event -> addCustomer());
-
-
-
 	}
 
 	private void clearCustomerForm() {
@@ -224,11 +220,11 @@ public class CustomerController implements Initializable {
 
 	            if(event.getClickCount() == 1) {
 
-	                InvoiceTableModel invSelectedTableRow = invoiceTable.getSelectionModel().getSelectedItem();
+	                CustomerInvoice invSelectedTableRow = invoiceTable.getSelectionModel().getSelectedItem();
 
 	                if(invSelectedTableRow != null) {
 
-                        CustomerInvoiceData invoiceData = new CustomerInvoiceData();
+                        SearchCustomerInvoiceItem invoiceData = new SearchCustomerInvoiceItem();
                         invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
 
                         if(invoiceData.getInvoiceData() != null) {
@@ -251,9 +247,9 @@ public class CustomerController implements Initializable {
 		customerTable.setOnMouseClicked(event -> {
 				
 			if(!customerTable.getItems().isEmpty()) {
-				
+
 				if(event.getClickCount() == 1) {
-					
+
 					custSelectedTableRow = customerTable.getSelectionModel().getSelectedItem();
 
 					if(custSelectedTableRow != null) {
@@ -267,13 +263,14 @@ public class CustomerController implements Initializable {
                         stateTF.setText(custSelectedTableRow.getState());
                         zipCodeTF.setText(custSelectedTableRow.getZipCode());
 
-                        searchInvoice(custSelectedTableRow.getCustomer_id());
+                        searchInvoice(custSelectedTableRow.getCustomerID());
+
+                        addButton.setDisable(true);
+                        updateButton.setDisable(false);
+                        clearInvoiceHistoryForm();
                     }
 				}
 			}
-			addButton.setDisable(true);
-			updateButton.setDisable(false);
-			clearInvoiceHistoryForm();
 		});
 	}
 	
@@ -288,7 +285,7 @@ public class CustomerController implements Initializable {
 
                 UpdateCustomer updateCustomer = new UpdateCustomer();
 
-                updateCustomer.setCustomerID(custSelectedTableRow.getCustomer_id());
+                updateCustomer.setCustomerID(custSelectedTableRow.getCustomerID());
                 updateCustomer.setFirstName(firstNameTF.getText().trim());
                 updateCustomer.setLastName(lastNameTF.getText().trim());
                 updateCustomer.setAddress(addressTF.getText().trim());
@@ -315,7 +312,7 @@ public class CustomerController implements Initializable {
 	
 	private void searchInvoice(int customerID) {
 
-        CustomerInvoice invoice = new CustomerInvoice();
+        SearchCustomerInvoice invoice = new SearchCustomerInvoice();
         invoice.searchInvoiceData(customerID);
 
         if(!invoice.getCustomerData().isEmpty()) {
@@ -420,11 +417,11 @@ public class CustomerController implements Initializable {
         invoiceSumListView.setCellFactory(new Callback<>() {
 
             @Override
-            public ListCell<InvoiceListViewModel> call(ListView<InvoiceListViewModel> param) {
+            public ListCell<CustomerInvoiceListModel> call(ListView<CustomerInvoiceListModel> param) {
                 return new ListCell<>() {
 
                     @Override
-                    protected void updateItem(InvoiceListViewModel item, boolean empty) {
+                    protected void updateItem(CustomerInvoiceListModel item, boolean empty) {
                         super.updateItem(item, empty);
                         if (item != null) {
                             setText("Item: " + item.getName() + "\n" +
