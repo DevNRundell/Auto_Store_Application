@@ -1,9 +1,8 @@
-package com.autostore.app.customer;
+package com.autostore.app.Inventory;
 
 import com.autostore.app.controllers.DialogController;
 import com.autostore.app.database.DBConnect;
 import com.autostore.app.database.DBUtils;
-import com.autostore.app.model.InvoiceTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.Connection;
@@ -11,11 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerInvoiceHistory {
+public class SearchInventory {
 
-    /*private ObservableList<InvoiceTableModel> invoiceData = FXCollections.observableArrayList();
+    private ObservableList<Inventory> inventoryData = FXCollections.observableArrayList();
 
-    public void searchInvoiceItemData(int orderID) {
+    public void searchInventoryData(String query, String searchValue) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -27,15 +26,21 @@ public class CustomerInvoiceHistory {
 
             if(!connection.isClosed()) {
 
-                String query = "";
-
                 preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setInt(1, orderID);
+                preparedStatement.setString(1, searchValue);
                 resultSet = preparedStatement.executeQuery();
 
                 while(resultSet.next()) {
 
+                    Inventory model = new Inventory();
 
+                    model.setInventoryID(resultSet.getInt("inventory_id"));
+                    model.setPartName(resultSet.getString("name"));
+                    model.setStockQuantity(resultSet.getInt("stock_quantity"));
+                    model.setUnitPrice(resultSet.getDouble("customer_price"));
+                    model.setDescription(resultSet.getString("description"));
+
+                    inventoryData.add(model);
 
                 }
             }
@@ -50,9 +55,7 @@ public class CustomerInvoiceHistory {
         }
     }
 
-    public ObservableList<InvoiceTableModel> getCustomerData() {
-        return invoiceData;
-    }*/
-
-    //Wait until better understanding of DB concept
+    public ObservableList<Inventory> getInventoryData() {
+        return inventoryData;
+    }
 }

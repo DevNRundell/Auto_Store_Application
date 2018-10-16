@@ -3,14 +3,10 @@ package com.autostore.app.controllers;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
-
-import com.autostore.app.customer.AddCustomer;
-import com.autostore.app.customer.CustomerInvoice;
-import com.autostore.app.customer.SearchCustomer;
-import com.autostore.app.customer.UpdateCustomer;
+import com.autostore.app.customer.*;
+import com.autostore.app.model.CustomerInvoiceListModel;
 import com.autostore.app.model.SearchByCBModel;
-import com.autostore.app.model.CustomerTableModel;
-import com.autostore.app.model.InvoiceTableModel;
+import com.autostore.app.customer.CustomerInvoice;
 import com.autostore.app.utils.ApplicationUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,46 +61,43 @@ public class CustomerController implements Initializable {
     private Button addButton;
 
     @FXML
-    private Button removeButton;
-
-    @FXML
     private Button updateButton;
 
     @FXML
 	private Button clearButton;
 
     @FXML
-    private TableView<CustomerTableModel> customerTable;
+    private TableView<Customer> customerTable;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> firstNameColumn;
+    private TableColumn<Customer, String> firstNameColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> lastNameColumn;
+    private TableColumn<Customer, String> lastNameColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> addressColumn;
+    private TableColumn<Customer, String> addressColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> emailColumn;
+    private TableColumn<Customer, String> emailColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> phoneColumn;
+    private TableColumn<Customer, String> phoneColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> cityColumn;
+    private TableColumn<Customer, String> cityColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> stateColumn;
+    private TableColumn<Customer, String> stateColumn;
 
     @FXML
-    private TableColumn<CustomerTableModel, String> zipCodeColumn;
+    private TableColumn<Customer, String> zipCodeColumn;
 
     @FXML
     private Tab purchaseHistoryTab;
 
 	@FXML
-	private ListView<?> invoiceSumListView;
+	private ListView<CustomerInvoiceListModel> invoiceSumListView;
 
 	@FXML
 	private Label invoiceDiscountLabel;
@@ -119,25 +112,25 @@ public class CustomerController implements Initializable {
 	private Label invoiceTotalLabel;
 
     @FXML
-    private TableView<InvoiceTableModel> invoiceTable;
+    private TableView<CustomerInvoice> invoiceTable;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Integer> invoiceIDColumn;
+    private TableColumn<CustomerInvoice, Integer> invoiceIDColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Date> orderDateColumn;
+    private TableColumn<CustomerInvoice, Date> orderDateColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> discountColumn;
+    private TableColumn<CustomerInvoice, Double> discountColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> subTotalColumn;
+    private TableColumn<CustomerInvoice, Double> subTotalColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> taxColumn;
+    private TableColumn<CustomerInvoice, Double> taxColumn;
 
     @FXML
-    private TableColumn<InvoiceTableModel, Double> totalColumn;
+    private TableColumn<CustomerInvoice, Double> totalColumn;
 
     @FXML
     private TextField searchTF;
@@ -153,33 +146,15 @@ public class CustomerController implements Initializable {
 
 	@FXML
 	private Tab newOrderTab;
-
-	@FXML
-	private ListView<?> orderSumListView;
-
-	@FXML
-	private Label orderDiscountLabel;
-
-	@FXML
-	private ComboBox<?> orderDiscountCB;
-
-	@FXML
-	private Label orderSubTotalLabel;
-
-	@FXML
-	private Label orderTaxesLabel;
-
-	@FXML
-	private Label orderTotalLabel;
     private TextField[] textFields;
-    private CustomerTableModel custSelectedTableRow;
+    private Customer custSelectedTableRow;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
 		textFields = new TextField[]{firstNameTF, lastNameTF, addressTF, emailTF, phoneTF, cityTF, stateTF, zipCodeTF};
 		
-		searchTypeComboBox.getItems().setAll("Absolute", "Relative");
+		searchTypeComboBox.getItems().setAll("Relative", "Absolute");
 		searchTypeComboBox.getSelectionModel().selectFirst();
 		
 		initCustomerTable();
@@ -187,19 +162,29 @@ public class CustomerController implements Initializable {
 		initSearchByComboBox();
         fillCustomerDataForm();
         fillInvoiceSummaryList();
+        setInvoiceListViewCustomCell();
 		
 		searchButton.setOnAction(event -> searchCustomer());
 		updateButton.setOnAction(event -> updateCustomer());
-		clearButton.setOnAction(event -> clearForm());
+		clearButton.setOnAction(event -> clearCustomerForm());
 		addButton.setOnAction(event -> addCustomer());
 	}
 
-	private void clearForm() {
+	private void clearCustomerForm() {
 	    ApplicationUtils.setTextFieldsEmpty(textFields);
 	    updateButton.setDisable(true);
-	    removeButton.setDisable(true);
 	    addButton.setDisable(false);
 	    custSelectedTableRow = null;
+	    clearInvoiceHistoryForm();
+	    invoiceTable.getItems().clear();
+    }
+
+    private void clearInvoiceHistoryForm() {
+        invoiceDiscountLabel.setText("Discount:");
+        invoiceSubTotalLabel.setText("Sub-Total:");
+        invoiceTaxesLabel.setText("Tax:");
+        invoiceTotalLabel.setText("Total:");
+        invoiceSumListView.getItems().clear();
     }
 
     private void addCustomer() {
@@ -217,7 +202,6 @@ public class CustomerController implements Initializable {
             addCustomer.setZipCode(zipCodeTF.getText().trim());
 
             if(addCustomer.add()) {
-
                 DialogController.showDialog("Add Successful", "Customer: " + addCustomer.getFirstName() +
                                             " was successfully added.", new Image(DialogController.SUCCESS_ICON));
                 ApplicationUtils.setTextFieldsEmpty(textFields);
@@ -236,12 +220,22 @@ public class CustomerController implements Initializable {
 
 	            if(event.getClickCount() == 1) {
 
-	                InvoiceTableModel invSelectedTableRow = invoiceTable.getSelectionModel().getSelectedItem();
+	                CustomerInvoice invSelectedTableRow = invoiceTable.getSelectionModel().getSelectedItem();
 
 	                if(invSelectedTableRow != null) {
 
-	                    //invoiceSumListView.getItems().
+                        SearchCustomerInvoiceItem invoiceData = new SearchCustomerInvoiceItem();
+                        invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
 
+                        if(invoiceData.getInvoiceData() != null) {
+
+                            invoiceSumListView.setItems(invoiceData.getInvoiceData());
+
+                            invoiceDiscountLabel.setText("Discount: $" + String.valueOf(invSelectedTableRow.getDiscount()));
+                            invoiceSubTotalLabel.setText("Sub-Total: $" + String.valueOf(invSelectedTableRow.getSubTotal()));
+                            invoiceTaxesLabel.setText("Tax: $" + String.valueOf(invSelectedTableRow.getTax()));
+                            invoiceTotalLabel.setText("Total: $" + String.valueOf(invSelectedTableRow.getTotal()));
+                        }
                     }
                 }
             }
@@ -253,9 +247,9 @@ public class CustomerController implements Initializable {
 		customerTable.setOnMouseClicked(event -> {
 				
 			if(!customerTable.getItems().isEmpty()) {
-				
+
 				if(event.getClickCount() == 1) {
-					
+
 					custSelectedTableRow = customerTable.getSelectionModel().getSelectedItem();
 
 					if(custSelectedTableRow != null) {
@@ -269,13 +263,14 @@ public class CustomerController implements Initializable {
                         stateTF.setText(custSelectedTableRow.getState());
                         zipCodeTF.setText(custSelectedTableRow.getZipCode());
 
-                        searchInvoice(custSelectedTableRow.getCustomer_id());
+                        searchInvoice(custSelectedTableRow.getCustomerID());
+
+                        addButton.setDisable(true);
+                        updateButton.setDisable(false);
+                        clearInvoiceHistoryForm();
                     }
 				}
 			}
-			addButton.setDisable(true);
-			updateButton.setDisable(false);
-			removeButton.setDisable(false);
 		});
 	}
 	
@@ -290,7 +285,7 @@ public class CustomerController implements Initializable {
 
                 UpdateCustomer updateCustomer = new UpdateCustomer();
 
-                updateCustomer.setCustomerID(custSelectedTableRow.getCustomer_id());
+                updateCustomer.setCustomerID(custSelectedTableRow.getCustomerID());
                 updateCustomer.setFirstName(firstNameTF.getText().trim());
                 updateCustomer.setLastName(lastNameTF.getText().trim());
                 updateCustomer.setAddress(addressTF.getText().trim());
@@ -311,14 +306,13 @@ public class CustomerController implements Initializable {
                 }
 
                 customerTable.refresh();
-
             }
         }
 	}
 	
 	private void searchInvoice(int customerID) {
 
-        CustomerInvoice invoice = new CustomerInvoice();
+        SearchCustomerInvoice invoice = new SearchCustomerInvoice();
         invoice.searchInvoiceData(customerID);
 
         if(!invoice.getCustomerData().isEmpty()) {
@@ -335,17 +329,16 @@ public class CustomerController implements Initializable {
 		String query, searchValue;
 		
 		String searchByValue = searchByComboBox.getSelectionModel().getSelectedItem().getSqlValue();
-			
-		SearchCustomer customer = new SearchCustomer();
 
 		if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
-			searchValue = searchTF.getText().trim();
-			query = "select * from customer_info where " + searchByValue + " = ?";
-		} else {
 			searchValue = "%" + searchTF.getText().trim() + "%";
-			query = "select * from customer_info where " + searchByValue + " like ?";
+            query = "select * from customer_info where " + searchByValue + " like ?";
+		} else {
+            searchValue = searchTF.getText().trim();
+            query = "select * from customer_info where " + searchByValue + " = ?";
 		}
-			
+
+        SearchCustomer customer = new SearchCustomer();
 		customer.searchCustomerData(query, searchValue);
 				
 		if(!customer.getCustomerData().isEmpty()) {
@@ -355,6 +348,8 @@ public class CustomerController implements Initializable {
 		}
 		
 		updateButton.setDisable(true);
+        invoiceTable.getItems().clear();
+		clearInvoiceHistoryForm();
 	}
 	
 	private void initCustomerTable() {
@@ -379,7 +374,7 @@ public class CustomerController implements Initializable {
 		totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
 	}
 
-	//Populates searchBy combobox with string values visible to the user while masking
+	//Populates searchBy combo-box with string values visible to the user while masking
 	//the sql values associated with each string value
 	private void initSearchByComboBox() {
 		
@@ -417,21 +412,29 @@ public class CustomerController implements Initializable {
         });
 	}
 
-	/*private void initInvoiceListView(InvoiceTableModel invoiceModel) {
+	private void setInvoiceListViewCustomCell() {
 
-        invoiceSumListView.setCellFactory(new ListCell<>(){
+        invoiceSumListView.setCellFactory(new Callback<>() {
 
             @Override
-            public void updateItem(String string, boolean empty)
-            {
-                super.updateItem(string,empty);
+            public ListCell<CustomerInvoiceListModel> call(ListView<CustomerInvoiceListModel> param) {
+                return new ListCell<>() {
 
-                if(empty) {
-                    setText(invoiceModel);
-                }
+                    @Override
+                    protected void updateItem(CustomerInvoiceListModel item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null) {
+                            setText("Item: " + item.getName() + "\n" +
+                                    "Description: " + item.getDescription() + "\n" +
+                                    "Quantity: " + item.getQtyOrdered());
+                        } else {
+                            setText(null);
+                        }
+                    }
+                };
             }
         });
-    }*/
+    }
 }
 
 

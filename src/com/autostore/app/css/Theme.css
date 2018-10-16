@@ -163,7 +163,21 @@
 
 .tab-pane > .tab-header-area > .tab-header-background {  
     -fx-background-color: #333232;  
-}  
+}
+
+/*********************************************/
+
+/*******************List View*****************/
+
+/*********************************************/
+
+.list-view {
+    -fx-control-inner-background: #333232;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #464646;
+}
 
 
 
