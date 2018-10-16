@@ -4,14 +4,16 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
 import com.autostore.app.customer.*;
-import com.autostore.app.model.CustomerInvoiceListModel;
+import com.autostore.app.model.CustomerInvoiceModel;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.customer.CustomerInvoice;
 import com.autostore.app.utils.ApplicationUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -20,18 +22,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class CustomerController implements Initializable {
 
-    @FXML
-    private Tab informationTab;
 
     @FXML
     private TextField firstNameTF;
@@ -67,6 +68,9 @@ public class CustomerController implements Initializable {
 	private Button clearButton;
 
     @FXML
+    private Button newOrderButton;
+
+    @FXML
     private TableView<Customer> customerTable;
 
     @FXML
@@ -93,11 +97,8 @@ public class CustomerController implements Initializable {
     @FXML
     private TableColumn<Customer, String> zipCodeColumn;
 
-    @FXML
-    private Tab purchaseHistoryTab;
-
 	@FXML
-	private ListView<CustomerInvoiceListModel> invoiceSumListView;
+	private ListView<CustomerInvoiceModel> invoiceSumListView;
 
 	@FXML
 	private Label invoiceDiscountLabel;
@@ -143,9 +144,6 @@ public class CustomerController implements Initializable {
     
     @FXML
     private ComboBox<SearchByCBModel> searchByComboBox;
-
-	@FXML
-	private Tab newOrderTab;
     private TextField[] textFields;
     private Customer custSelectedTableRow;
     
@@ -168,8 +166,35 @@ public class CustomerController implements Initializable {
 		updateButton.setOnAction(event -> updateCustomer());
 		clearButton.setOnAction(event -> clearCustomerForm());
 		addButton.setOnAction(event -> addCustomer());
+		newOrderButton.setOnAction(event -> newOrder());
 	}
 
+	private void newOrder() {
+
+	    if(custSelectedTableRow != null) {
+
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("com/autostore/app/fxml/customer_order_window.fxml"));
+                Pane root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("New Customer Order");
+                stage.setResizable(false);
+                stage.show();
+
+                CustomerOrderController controller = loader.getController();
+                controller.setCustomerID(custSelectedTableRow.getCustomerID());
+                controller.setHeaderLabel(custSelectedTableRow.getFirstName() + " " + custSelectedTableRow.getLastName());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            DialogController.showDialog("Select A Customer","Please select a customer before creating a new order", new Image(DialogController.ERROR_ICON));
+        }
+    }
 	private void clearCustomerForm() {
 	    ApplicationUtils.setTextFieldsEmpty(textFields);
 	    updateButton.setDisable(true);
@@ -417,11 +442,11 @@ public class CustomerController implements Initializable {
         invoiceSumListView.setCellFactory(new Callback<>() {
 
             @Override
-            public ListCell<CustomerInvoiceListModel> call(ListView<CustomerInvoiceListModel> param) {
+            public ListCell<CustomerInvoiceModel> call(ListView<CustomerInvoiceModel> param) {
                 return new ListCell<>() {
 
                     @Override
-                    protected void updateItem(CustomerInvoiceListModel item, boolean empty) {
+                    protected void updateItem(CustomerInvoiceModel item, boolean empty) {
                         super.updateItem(item, empty);
                         if (item != null) {
                             setText("Item: " + item.getName() + "\n" +

@@ -55,6 +55,48 @@ public class SearchInventory {
         }
     }
 
+    public void searchAllInventory() {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+
+            connection = DBConnect.getConnection();
+
+            if(!connection.isClosed()) {
+
+                String query = "select * from store_inventory";
+
+                preparedStatement = connection.prepareStatement(query);
+                resultSet = preparedStatement.executeQuery();
+
+                while(resultSet.next()) {
+
+                    Inventory model = new Inventory();
+
+                    model.setInventoryID(resultSet.getInt("inventory_id"));
+                    model.setPartName(resultSet.getString("name"));
+                    model.setStockQuantity(resultSet.getInt("stock_quantity"));
+                    model.setUnitPrice(resultSet.getDouble("customer_price"));
+                    model.setDescription(resultSet.getString("description"));
+
+                    inventoryData.add(model);
+
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            DialogController.showDatabaseError();
+        } finally {
+            DBUtils.closeStatement(preparedStatement);
+            DBUtils.closeResultSet(resultSet);
+            DBUtils.closeConn(connection);
+        }
+    }
+
     public ObservableList<Inventory> getInventoryData() {
         return inventoryData;
     }

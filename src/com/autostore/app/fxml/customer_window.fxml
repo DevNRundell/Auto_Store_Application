@@ -122,6 +122,11 @@
                                     <Insets top="7.0" />
                                  </VBox.margin>
                               </Button>
+                              <Button fx:id="newOrderButton" alignment="CENTER" layoutX="20.0" layoutY="623.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="400.0" text="New Order">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -130,151 +135,96 @@
                      </left>
                      <center>
                         <HBox BorderPane.alignment="CENTER">
-                           <children>
-                              <TableView fx:id="customerTable" HBox.hgrow="ALWAYS">
-                                <columns>
-                                  <TableColumn fx:id="firstNameColumn" prefWidth="197.0" text="First Name" />
-                                    <TableColumn fx:id="lastNameColumn" prefWidth="142.0" text="Last Name" />
-                                    <TableColumn fx:id="addressColumn" prefWidth="115.0" text="Address" />
-                                    <TableColumn fx:id="emailColumn" prefWidth="187.0" text="Email" />
-                                    <TableColumn fx:id="phoneColumn" prefWidth="162.0" text="Phone" />
-                                    <TableColumn fx:id="cityColumn" prefWidth="142.0" text="City" />
-                                    <TableColumn fx:id="stateColumn" prefWidth="254.0" text="State" />
-                                    <TableColumn fx:id="zipCodeColumn" prefWidth="254.0" text="Zip Code" />
-                                </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </TableView>
-                           </children>
+                           <TableView fx:id="customerTable" HBox.hgrow="ALWAYS">
+                              <columns>
+                                 <TableColumn fx:id="firstNameColumn" prefWidth="197.0" text="First Name"/>
+                                 <TableColumn fx:id="lastNameColumn" prefWidth="142.0" text="Last Name"/>
+                                 <TableColumn fx:id="addressColumn" prefWidth="115.0" text="Address"/>
+                                 <TableColumn fx:id="emailColumn" prefWidth="187.0" text="Email"/>
+                                 <TableColumn fx:id="phoneColumn" prefWidth="162.0" text="Phone"/>
+                                 <TableColumn fx:id="cityColumn" prefWidth="142.0" text="City"/>
+                                 <TableColumn fx:id="stateColumn" prefWidth="254.0" text="State"/>
+                                 <TableColumn fx:id="zipCodeColumn" prefWidth="254.0" text="Zip Code"/>
+                              </columns>
+                              <columnResizePolicy>
+                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                              </columnResizePolicy>
+                              <HBox.margin>
+                                 <Insets/>
+                              </HBox.margin>
+                           </TableView>
                         </HBox>
                      </center>
                   </BorderPane>
             </content>
           </Tab>
-            <Tab fx:id="purchaseHistoryTab" closable="false" text="Purchase History">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1200.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label layoutX="20.0" layoutY="626.0" text="Invoice Summary:" />
-                              <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                                 <content>
-                                    <ListView fx:id="invoiceSumListView" />
-                                 </content>
-                              </ScrollPane>
-                              <Label fx:id="invoiceDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="invoiceSubTotalLabel" text="Sub-Total:">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="invoiceTaxesLabel" layoutX="20.0" layoutY="508.0" text="Tax:">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="invoiceTotalLabel" layoutX="20.0" layoutY="540.0" text="Total:">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <HBox layoutX="369.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <TableView fx:id="invoiceTable" HBox.hgrow="ALWAYS">
-                                 <columns>
-                                    <TableColumn fx:id="invoiceIDColumn" prefWidth="197.0" text="Invoice ID" />
-                                    <TableColumn fx:id="orderDateColumn" prefWidth="142.0" text="Order Date" />
-                                    <TableColumn fx:id="discountColumn" prefWidth="115.0" text="Discount" />
-                                    <TableColumn fx:id="subTotalColumn" prefWidth="187.0" text="Sub-Total" />
-                                    <TableColumn fx:id="taxColumn" prefWidth="162.0" text="Tax" />
-                                    <TableColumn fx:id="totalColumn" prefWidth="142.0" text="Total" />
-                                 </columns>
-                                 <columnResizePolicy>
-                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                 </columnResizePolicy>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </TableView>
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
-            <Tab fx:id="newOrderTab" text="New Order">
-               <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1200.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label layoutX="20.0" layoutY="626.0" text="Order Summary:" />
-                              <ListView fx:id="orderSumListView" VBox.vgrow="SOMETIMES">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </ListView>
-                              <ComboBox fx:id="orderDiscountCB" prefWidth="150.0" />
-                              <Label fx:id="orderSubTotalLabel" text="Sub Total:">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="orderTaxesLabel" layoutX="20.0" layoutY="508.0" text="Taxes:">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="orderTotalLabel" layoutX="20.0" layoutY="540.0" text="Total:">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" />
-                                 </VBox.margin>
-                                 <padding>
-                                    <Insets top="10.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <HBox layoutX="369.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </content>
-            </Tab>
+           <Tab fx:id="purchaseHistoryTab" closable="false" text="Purchase History">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                 <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1200.0"
+                       AnchorPane.topAnchor="0.0">
+                    <padding>
+                       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                    </padding>
+                    <Label layoutX="20.0" layoutY="626.0" text="Invoice Summary:"/>
+                    <ScrollPane fitToHeight="true" fitToWidth="true" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
+                       <VBox.margin>
+                          <Insets top="10.0"/>
+                       </VBox.margin>
+                       <ListView fx:id="invoiceSumListView"/>
+                    </ScrollPane>
+                    <Label fx:id="invoiceDiscountLabel" layoutX="20.0" layoutY="626.0" text="Discount:">
+                       <padding>
+                          <Insets top="10.0"/>
+                       </padding>
+                    </Label>
+                    <Label fx:id="invoiceSubTotalLabel" text="Sub-Total:">
+                       <VBox.margin>
+                          <Insets/>
+                       </VBox.margin>
+                       <padding>
+                          <Insets top="10.0"/>
+                       </padding>
+                    </Label>
+                    <Label fx:id="invoiceTaxesLabel" layoutX="20.0" layoutY="508.0" text="Tax:">
+                       <VBox.margin>
+                          <Insets/>
+                       </VBox.margin>
+                       <padding>
+                          <Insets top="10.0"/>
+                       </padding>
+                    </Label>
+                    <Label fx:id="invoiceTotalLabel" layoutX="20.0" layoutY="540.0" text="Total:">
+                       <VBox.margin>
+                          <Insets bottom="10.0"/>
+                       </VBox.margin>
+                       <padding>
+                          <Insets top="10.0"/>
+                       </padding>
+                    </Label>
+                 </VBox>
+                 <HBox layoutX="369.0" layoutY="14.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0"
+                       AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                       <TableView fx:id="invoiceTable" HBox.hgrow="ALWAYS">
+                          <columns>
+                             <TableColumn fx:id="invoiceIDColumn" prefWidth="197.0" text="Invoice ID"/>
+                             <TableColumn fx:id="orderDateColumn" prefWidth="142.0" text="Order Date"/>
+                             <TableColumn fx:id="discountColumn" prefWidth="115.0" text="Discount"/>
+                             <TableColumn fx:id="subTotalColumn" prefWidth="187.0" text="Sub-Total"/>
+                             <TableColumn fx:id="taxColumn" prefWidth="162.0" text="Tax"/>
+                             <TableColumn fx:id="totalColumn" prefWidth="142.0" text="Total"/>
+                          </columns>
+                          <columnResizePolicy>
+                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                          </columnResizePolicy>
+                          <HBox.margin>
+                             <Insets/>
+                          </HBox.margin>
+                       </TableView>
+                    </children>
+                 </HBox>
+              </AnchorPane>
+           </Tab>
         </tabs>
       </TabPane>
    </center>

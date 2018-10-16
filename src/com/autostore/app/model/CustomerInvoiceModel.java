@@ -1,11 +1,12 @@
 package com.autostore.app.model;
 
-public class CustomerInvoiceListModel {
+public class CustomerInvoiceModel {
 
     private int inventoryID;
     private String name;
     private String description;
     private int qtyOrdered;
+    private double customerPrice;
 
     public int getQtyOrdered() {
         return qtyOrdered;
@@ -30,5 +31,11 @@ public class CustomerInvoiceListModel {
     }
     public void setDescription(String description) {
         this.description = description;
+    }
+    public double getCustomerPrice() {
+        return customerPrice;
+    }
+    public void setCustomerPrice(double customerPrice) {
+        this.customerPrice = customerPrice;
     }
 }

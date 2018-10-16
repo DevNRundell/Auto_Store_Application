@@ -3,7 +3,7 @@ package com.autostore.app.customer;
 import com.autostore.app.controllers.DialogController;
 import com.autostore.app.database.DBConnect;
 import com.autostore.app.database.DBUtils;
-import com.autostore.app.model.CustomerInvoiceListModel;
+import com.autostore.app.model.CustomerInvoiceModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.Connection;
@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class SearchCustomerInvoiceItem {
 
-    private ObservableList<CustomerInvoiceListModel> invoiceData = FXCollections.observableArrayList();
+    private ObservableList<CustomerInvoiceModel> invoiceData = FXCollections.observableArrayList();
 
     public void searchInvoiceItemData(int orderID) {
 
@@ -58,14 +58,14 @@ public class SearchCustomerInvoiceItem {
 
                         if (resultSet2.next()) {
 
-                            CustomerInvoiceListModel customerInvoiceListModel = new CustomerInvoiceListModel();
+                            CustomerInvoiceModel customerInvoiceModel = new CustomerInvoiceModel();
 
-                            customerInvoiceListModel.setInventoryID(resultSet2.getInt("inventory_id"));
-                            customerInvoiceListModel.setName(resultSet2.getString("name"));
-                            customerInvoiceListModel.setDescription(resultSet2.getString("description"));
-                            customerInvoiceListModel.setQtyOrdered(invMap.get(id));
+                            customerInvoiceModel.setInventoryID(resultSet2.getInt("inventory_id"));
+                            customerInvoiceModel.setName(resultSet2.getString("name"));
+                            customerInvoiceModel.setDescription(resultSet2.getString("description"));
+                            customerInvoiceModel.setQtyOrdered(invMap.get(id));
 
-                            invoiceData.add(customerInvoiceListModel);
+                            invoiceData.add(customerInvoiceModel);
 
                         }
                     }
@@ -84,7 +84,7 @@ public class SearchCustomerInvoiceItem {
         }
     }
 
-    public ObservableList<CustomerInvoiceListModel> getInvoiceData() {
+    public ObservableList<CustomerInvoiceModel> getInvoiceData() {
         return invoiceData;
     }
 }
