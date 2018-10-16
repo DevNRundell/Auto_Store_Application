@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
 import javafx.util.Callback;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +41,7 @@ public class SupplierController implements Initializable {
     private TextField phoneTF;
 
     @FXML
-    private TextField contactTF;
+    private TextField contactNameTF;
 
     @FXML
     private Button addButton;
@@ -76,7 +77,7 @@ public class SupplierController implements Initializable {
     private TableColumn<SupplierTableModel, String> phoneColumn;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> contactColumn;
+    private TableColumn<SupplierTableModel, String> contactNameColumn;
 
     @FXML
     private Tab purchaseHistoryTab;
@@ -127,7 +128,7 @@ public class SupplierController implements Initializable {
     private ComboBox<String> searchTypeComboBox;
 
     @FXML
-    private ComboBox<String> searchByComboBox;
+    private ComboBox<SearchByCBModel> searchByComboBox;
 
     private TextField[] textFields;
     private SupplierTableModel suppSelectedTableRow;
@@ -144,15 +145,14 @@ public class SupplierController implements Initializable {
         initSearchComboBox();
         //initInvoiceTable();
         //fillSupplierDataForm();
-       // fillInvoiceSummaryList();
+        // fillInvoiceSummaryList();
 
         searchButton.setOnAction(event -> searchSupplier());
         clearButton.setOnAction(event -> clearForm());
-       // addButton.setOnAction(event -> addSupplier());
+        //addButton.setOnAction(event -> addSupplier());
 
 
     }
-}
 
     private void initSupplierTable() {
 
@@ -183,20 +183,20 @@ public class SupplierController implements Initializable {
 
         searchByComboBox.getItems().addAll(searchValues);
         searchByComboBox.getSelectionModel().selectFirst();
-        searchByComboBox.setCellFactory(new Callback<>(){
+        searchByComboBox.setCellFactory(new Callback<>() {
 
             @Override
             public ListCell<SearchByCBModel> call(ListView<SearchByCBModel> p) {
 
-                return new ListCell<>(){
+                return new ListCell<>() {
 
                     @Override
                     protected void updateItem(SearchByCBModel t, boolean bln) {
                         super.updateItem(t, bln);
 
-                        if(t != null){
+                        if (t != null) {
                             setText(t.getSearchValue());
-                        }else{
+                        } else {
                             setText(null);
                         }
                     }
@@ -214,7 +214,7 @@ public class SupplierController implements Initializable {
 
         SearchSupplier supplier = new SearchSupplier();
 
-        if(searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
+        if (searchTypeComboBox.getSelectionModel().getSelectedIndex() == 0) {
             searchValue = searchTF.getText().trim();
             query = "select * from supplier where " + searchByValue + " = ?";
         } else {
@@ -224,7 +224,7 @@ public class SupplierController implements Initializable {
 
         supplier.searchSupplierData(query, searchValue);
 
-        if(!supplier.getSupplierData().isEmpty()) {
+        if (!supplier.getSupplierData().isEmpty()) {
             supplierTable.setItems(supplier.getSupplierData());
         } else {
             supplierTable.getItems().clear();
@@ -232,3 +232,30 @@ public class SupplierController implements Initializable {
 
         updateButton.setDisable(true);
     }
+}
+
+//    private void addSupplier() {
+//
+//        if(!ApplicationUtils.isTextFieldEmpty(textFields)) {
+//
+//            AddSupplier addSupplier = new AddSupplier();
+//            addSupplier.setName(nameTF.getText().trim());
+//            addSupplier.setAddress(addressTF.getText().trim());
+//            addSupplier.setEmail(emailTF.getText().trim().toLowerCase());
+//            addSupplier.setPhone(phoneTF.getText().trim());
+//            addSupplier.setCity(cityTF.getText().trim());
+//            addSupplier.setState(stateTF.getText().trim());
+//            addSupplier.setContactName(contactNameTF.getText().trim());
+//
+//            if(addSupplier.add()) {
+//
+//                DialogController.showDialog("Add Successful", "Supplier: " + addSupplier.getName() +
+//                        " was successfully added.", new Image(DialogController.SUCCESS_ICON));
+//                ApplicationUtils.setTextFieldsEmpty(textFields);
+//            } else {
+//                DialogController.showDialog("Add Failed", "Supplier: " + addSupplier.getName() +
+//                        " could not be added, please try again.", new Image(DialogController.ERROR_ICON));
+//            }
+//        }
+//    }
+
