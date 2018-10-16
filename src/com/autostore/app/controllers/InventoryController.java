@@ -142,9 +142,7 @@ public class InventoryController implements Initializable {
                 if (updateInventory.updateItem()) {
                     DialogController.showDialog("Update Successful", "Part: " + updateInventory.getPartName() +
                             " was successfully updated.", new Image(DialogController.SUCCESS_ICON));
-                    ApplicationUtils.setTextFieldsEmpty(textFields);
-                    ApplicationUtils.setTextAreaEmpty(textAreas);
-                    updateButton.setDisable(true);
+                    clearForm();
                 } else {
                     DialogController.showDialog("Update Failed", "Part: " + updateInventory.getPartName() +
                             " failed to update.", new Image(DialogController.ERROR_ICON));
