@@ -1,5 +1,6 @@
 package com.autostore.app.controllers;
 
+import com.autostore.app.customer.SearchCustomerInvoice;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.model.SupplierTableModel;
 import com.autostore.app.supplier.SearchSupplier;
@@ -144,7 +145,7 @@ public class SupplierController implements Initializable {
         initSupplierTable();
         initSearchComboBox();
         //initInvoiceTable();
-        //fillSupplierDataForm();
+        fillSupplierDataForm();
         // fillInvoiceSummaryList();
 
         searchButton.setOnAction(event -> searchSupplier());
@@ -231,6 +232,37 @@ public class SupplierController implements Initializable {
         }
 
         updateButton.setDisable(true);
+    }
+
+    private void fillSupplierDataForm() {
+
+        supplierTable.setOnMouseClicked(event -> {
+
+            if (!supplierTable.getItems().isEmpty()) {
+
+                if (event.getClickCount() == 1) {
+
+                    suppSelectedTableRow = supplierTable.getSelectionModel().getSelectedItem();
+
+                    if (suppSelectedTableRow != null) {
+
+                        nameTF.setText(suppSelectedTableRow.getName());
+                        addressTF.setText(suppSelectedTableRow.getAddress());
+                        emailTF.setText(suppSelectedTableRow.getEmail());
+                        phoneTF.setText(suppSelectedTableRow.getPhone());
+                        cityTF.setText(suppSelectedTableRow.getCity());
+                        stateTF.setText(suppSelectedTableRow.getState());
+                        contactNameTF.setText(suppSelectedTableRow.getContactName());
+
+                        // searchInvoice(suppSelectedTableRow.getSupplierID());
+
+                        addButton.setDisable(true);
+                        updateButton.setDisable(false);
+                        //clearInvoiceHistoryForm();
+                    }
+                }
+            }
+        });
     }
 }
 
