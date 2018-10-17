@@ -1,5 +1,6 @@
 package com.autostore.app.controllers;
 
+import com.autostore.app.supplier.UpdateSupplier;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.supplier.*;
 import com.autostore.app.model.SupplierTableModel;
@@ -150,7 +151,8 @@ public class SupplierController implements Initializable {
 
         searchButton.setOnAction(event -> searchSupplier());
         clearButton.setOnAction(event -> clearForm());
-        //addButton.setOnAction(event -> addSupplier());
+        addButton.setOnAction(event -> addSupplier());
+        updateButton.setOnAction(event -> updateSupplier());
 
 
     }
@@ -289,5 +291,40 @@ public class SupplierController implements Initializable {
             }
         }
     }
+
+    private void updateSupplier() {
+
+        if(suppSelectedTableRow != null) {
+
+            Alert updateAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES, ButtonType.NO);
+            updateAlert.showAndWait();
+
+            if (updateAlert.getResult() == ButtonType.YES) {
+
+                UpdateSupplier updateSupplier = new UpdateSupplier();
+
+                updateSupplier.setSupplierID(suppSelectedTableRow.getSupplierID());
+                updateSupplier.setName(nameTF.getText().trim());
+                updateSupplier.setAddress(addressTF.getText().trim());
+                updateSupplier.setEmail(emailTF.getText().trim().toLowerCase());
+                updateSupplier.setPhone(phoneTF.getText().trim());
+                updateSupplier.setCity(cityTF.getText().trim());
+                updateSupplier.setState(stateTF.getText().trim());
+                updateSupplier.setContactName(contactNameTF.getText().trim());
+
+                if (updateSupplier.update()) {
+                    DialogController.showDialog("Update Successful", "Supplier: " + updateSupplier.getName() +
+                            " was successfully updated.", new Image(DialogController.SUCCESS_ICON));
+                    ApplicationUtils.setTextFieldsEmpty(textFields);
+                    updateButton.setDisable(true);
+                } else {
+                    DialogController.showDialog("Update Failed", "Supplier: " + updateSupplier.getName() +
+                            " failed to update.", new Image(DialogController.ERROR_ICON));
+                }
+                supplierTable.refresh();
+            }
+        }
+    }
+
 }
 

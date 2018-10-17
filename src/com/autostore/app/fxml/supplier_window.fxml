@@ -101,11 +101,6 @@
                                     <Insets top="7.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button fx:id="removeButton" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="400.0" text="Remove" VBox.vgrow="NEVER">
-                                 <VBox.margin>
-                                    <Insets top="7.0" />
-                                 </VBox.margin>
-                              </Button>
                               <Button fx:id="updateButton" alignment="CENTER" disable="true" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="400.0" text="Update" VBox.vgrow="NEVER">
                                  <VBox.margin>
                                     <Insets top="7.0" />

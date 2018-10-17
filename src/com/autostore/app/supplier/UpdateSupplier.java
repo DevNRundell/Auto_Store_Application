@@ -1,15 +1,16 @@
 package com.autostore.app.supplier;
 
-import com.autostore.app.controllers.DialogController;
-import com.autostore.app.database.DBConnect;
-import com.autostore.app.database.DBUtils;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AddSupplier extends Supplier {
+import com.autostore.app.controllers.DialogController;
+import com.autostore.app.database.DBConnect;
+import com.autostore.app.database.DBUtils;
 
-    public boolean add() {
+public class UpdateSupplier extends Supplier {
+
+    public boolean update() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -20,7 +21,7 @@ public class AddSupplier extends Supplier {
 
             if(!connection.isClosed()) {
 
-                String query = "insert into customer_info (name, address, email, phone, city, state, contactName) values (?,?,?,?,?,?,?)";
+                String query = "update supplier set name = ?, address = ?, email = ?, phone = ?, city = ?, state = ?, contactName = ? where supplier_id = ?";
 
                 connection.setAutoCommit(false);
                 preparedStatement = connection.prepareStatement(query);
@@ -31,12 +32,15 @@ public class AddSupplier extends Supplier {
                 preparedStatement.setString(5, city);
                 preparedStatement.setString(6, state);
                 preparedStatement.setString(7, contactName);
+                preparedStatement.setInt(8, supplierID);
+
                 preparedStatement.executeUpdate();
                 connection.commit();
 
                 return true;
 
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
             DialogController.showDatabaseError();
