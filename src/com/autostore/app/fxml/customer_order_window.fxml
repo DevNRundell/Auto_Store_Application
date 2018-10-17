@@ -58,6 +58,11 @@
                <Insets bottom="10.0" left="10.0" top="7.0" />
             </VBox.margin>
          </Button>
+         <Button fx:id="removeItemButton" layoutX="20.0" layoutY="736.0" mnemonicParsing="false" prefWidth="400.0" text="Remove Item">
+            <VBox.margin>
+               <Insets bottom="10.0" left="10.0" />
+            </VBox.margin>
+         </Button>
       </VBox>
    </left>
    <top>

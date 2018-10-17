@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
-
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
@@ -48,6 +47,9 @@ public class CustomerOrderController implements Initializable {
     private Button submitButton;
 
     @FXML
+    private Button removeItemButton;
+
+    @FXML
     private Label headerLabel;
     private int customerID;
     private double subTotal;
@@ -69,6 +71,23 @@ public class CustomerOrderController implements Initializable {
         discount = 0;
         total = 0;
 
+        removeItemButton.setOnAction(event -> removeItem());
+
+    }
+
+    private void removeItem() {
+
+        Inventory removeItem = itemListView.getSelectionModel().getSelectedItem();
+
+        if(removeItem != null) {
+
+            subTotal -= removeItem.getUnitPrice();
+            total = subTotal + tax - discount;
+
+            itemListView.getItems().remove(removeItem);
+
+            setOrderAmounts();
+        }
     }
 
     private void initAddItemMouseEvent() {
@@ -90,6 +109,7 @@ public class CustomerOrderController implements Initializable {
 
                         subTotal += item.getUnitPrice();
                         tax = (TAX_RATE * subTotal);
+                        total = ((subTotal + tax) - discount);
 
                         itemListView.getItems().add(model);
 
@@ -149,7 +169,7 @@ public class CustomerOrderController implements Initializable {
 
         subTotalLabel.setText("Sub-Total: $" + format.format(subTotal));
         taxLabel.setText("Tax: $" + format.format(tax));
-        totalLabel.setText("Total: $" + format.format((subTotal + tax) - discount));
+        totalLabel.setText("Total: $" + format.format(total));
 
     }
 }
