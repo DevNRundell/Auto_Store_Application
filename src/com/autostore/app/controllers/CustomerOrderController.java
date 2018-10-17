@@ -2,6 +2,8 @@ package com.autostore.app.controllers;
 
 import com.autostore.app.Inventory.Inventory;
 import com.autostore.app.Inventory.SearchInventory;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -35,7 +37,7 @@ public class CustomerOrderController implements Initializable {
     private Label subTotalLabel;
 
     @FXML
-    private Label discountLabel;
+    private ComboBox<String> discountCB;
 
     @FXML
     private Label taxLabel;
@@ -62,10 +64,14 @@ public class CustomerOrderController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        discountCB.getItems().setAll("5%", "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%", "50%", "55%", "60%",
+                                    "65%", "70%", "75%");
+
         initInventoryTable();
         loadInventory();
         setInvoiceListViewCustomCell();
         initAddItemMouseEvent();
+        initDiscountCBListener();
 
         subTotal = 0;
         discount = 0;
@@ -75,6 +81,16 @@ public class CustomerOrderController implements Initializable {
 
     }
 
+    private void initDiscountCBListener() {
+
+        discountCB.selectionModelProperty().addListener((observable, oldValue, newValue) -> {
+            discount = subTotal + (subTotal * Integer.parseInt(discountCB.getSelectionModel().getSelectedItem().substring(0, '%' - 1)));
+            setOrderAmounts();
+
+            //doesnt work fix
+        });
+    }
+
     private void removeItem() {
 
         Inventory removeItem = itemListView.getSelectionModel().getSelectedItem();
@@ -82,11 +98,11 @@ public class CustomerOrderController implements Initializable {
         if(removeItem != null) {
 
             subTotal -= removeItem.getUnitPrice();
-            total = subTotal + tax - discount;
+            tax = (TAX_RATE * subTotal);
+            total = ((subTotal + tax) - discount);
+            setOrderAmounts();
 
             itemListView.getItems().remove(removeItem);
-
-            setOrderAmounts();
         }
     }
 
@@ -106,6 +122,7 @@ public class CustomerOrderController implements Initializable {
                         model.setPartName(item.getPartName());
                         model.setInventoryID(item.getInventoryID());
                         model.setDescription(item.getDescription());
+                        model.setUnitPrice(item.getUnitPrice());
 
                         subTotal += item.getUnitPrice();
                         tax = (TAX_RATE * subTotal);
@@ -133,7 +150,8 @@ public class CustomerOrderController implements Initializable {
                         super.updateItem(item, empty);
                         if (item != null) {
                             setText("Item: " + item.getPartName() + "\n" +
-                                    "Description: " + item.getDescription() + "\n");
+                                    "Description: " + item.getDescription() + "\n" +
+                                    "Unit Price: $" + item.getUnitPrice());
                         } else {
                             setText(null);
                         }
