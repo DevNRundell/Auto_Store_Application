@@ -20,7 +20,7 @@ public class AddSupplier extends Supplier {
 
             if(!connection.isClosed()) {
 
-                String query = "insert into customer_info (name, address, email, phone, city, state, contactName) values (?,?,?,?,?,?,?)";
+                String query = "insert into supplier (name, address, email, phone, city, state, contact_name) values (?,?,?,?,?,?,?)";
 
                 connection.setAutoCommit(false);
                 preparedStatement = connection.prepareStatement(query);
@@ -31,6 +31,7 @@ public class AddSupplier extends Supplier {
                 preparedStatement.setString(5, city);
                 preparedStatement.setString(6, state);
                 preparedStatement.setString(7, contactName);
+
                 preparedStatement.executeUpdate();
                 connection.commit();
 

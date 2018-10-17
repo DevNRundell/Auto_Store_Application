@@ -1,6 +1,5 @@
 package com.autostore.app.controllers;
 
-import com.autostore.app.supplier.UpdateSupplier;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.supplier.*;
 import com.autostore.app.model.SupplierTableModel;
@@ -47,9 +46,6 @@ public class SupplierController implements Initializable {
 
     @FXML
     private Button addButton;
-
-    @FXML
-    private Button removeButton;
 
     @FXML
     private Button updateButton;
@@ -172,7 +168,6 @@ public class SupplierController implements Initializable {
     private void clearForm() {
         ApplicationUtils.setTextFieldsEmpty(textFields);
         updateButton.setDisable(true);
-        removeButton.setDisable(true);
         addButton.setDisable(false);
         suppSelectedTableRow = null;
     }
@@ -256,7 +251,7 @@ public class SupplierController implements Initializable {
                         stateTF.setText(suppSelectedTableRow.getState());
                         contactNameTF.setText(suppSelectedTableRow.getContactName());
 
-                        // searchInvoice(suppSelectedTableRow.getSupplierID());
+                        //searchInvoice(suppSelectedTableRow.getSupplierID());
 
                         addButton.setDisable(true);
                         updateButton.setDisable(false);

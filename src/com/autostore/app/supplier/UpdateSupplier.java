@@ -21,16 +21,16 @@ public class UpdateSupplier extends Supplier {
 
             if(!connection.isClosed()) {
 
-                String query = "update supplier set name = ?, address = ?, email = ?, phone = ?, city = ?, state = ?, contactName = ? where supplier_id = ?";
+                String query = "update supplier set name = ?, address = ?, city = ?, state = ?, email = ?, phone = ?, contact_name = ? where supplier_id = ?";
 
                 connection.setAutoCommit(false);
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, name);
                 preparedStatement.setString(2, address);
-                preparedStatement.setString(3, email);
-                preparedStatement.setString(4, phone);
-                preparedStatement.setString(5, city);
-                preparedStatement.setString(6, state);
+                preparedStatement.setString(3, city);
+                preparedStatement.setString(4, state);
+                preparedStatement.setString(5, email);
+                preparedStatement.setString(6, phone);
                 preparedStatement.setString(7, contactName);
                 preparedStatement.setInt(8, supplierID);
 
