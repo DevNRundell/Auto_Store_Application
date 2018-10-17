@@ -91,7 +91,7 @@
                                     <Insets top="7.0" />
                                  </VBox.margin>
                               </Label>
-                              <TextField fx:id="contactTF" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+                              <TextField fx:id="contactNameTF" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
                                  <VBox.margin>
                                     <Insets top="7.0" />
                                  </VBox.margin>

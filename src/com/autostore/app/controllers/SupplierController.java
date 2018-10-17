@@ -1,7 +1,7 @@
 package com.autostore.app.controllers;
 
-import com.autostore.app.customer.SearchCustomerInvoice;
 import com.autostore.app.model.SearchByCBModel;
+import com.autostore.app.supplier.*;
 import com.autostore.app.model.SupplierTableModel;
 import com.autostore.app.supplier.SearchSupplier;
 import com.autostore.app.utils.ApplicationUtils;
@@ -140,7 +140,7 @@ public class SupplierController implements Initializable {
         textFields = new TextField[]{nameTF, addressTF, emailTF, phoneTF, cityTF, stateTF, contactNameTF};
 
         searchTypeComboBox.getItems().setAll("Absolute", "Relative");
-        searchTypeComboBox.getSelectionModel().selectFirst();
+        searchTypeComboBox.getSelectionModel().selectLast();
 
         initSupplierTable();
         initSearchComboBox();
@@ -264,30 +264,30 @@ public class SupplierController implements Initializable {
             }
         });
     }
-}
 
-//    private void addSupplier() {
-//
-//        if(!ApplicationUtils.isTextFieldEmpty(textFields)) {
-//
-//            AddSupplier addSupplier = new AddSupplier();
-//            addSupplier.setName(nameTF.getText().trim());
-//            addSupplier.setAddress(addressTF.getText().trim());
-//            addSupplier.setEmail(emailTF.getText().trim().toLowerCase());
-//            addSupplier.setPhone(phoneTF.getText().trim());
-//            addSupplier.setCity(cityTF.getText().trim());
-//            addSupplier.setState(stateTF.getText().trim());
-//            addSupplier.setContactName(contactNameTF.getText().trim());
-//
-//            if(addSupplier.add()) {
-//
-//                DialogController.showDialog("Add Successful", "Supplier: " + addSupplier.getName() +
-//                        " was successfully added.", new Image(DialogController.SUCCESS_ICON));
-//                ApplicationUtils.setTextFieldsEmpty(textFields);
-//            } else {
-//                DialogController.showDialog("Add Failed", "Supplier: " + addSupplier.getName() +
-//                        " could not be added, please try again.", new Image(DialogController.ERROR_ICON));
-//            }
-//        }
-//    }
+    private void addSupplier() {
+
+        if (!ApplicationUtils.isTextFieldEmpty(textFields)) {
+
+            AddSupplier addSupplier = new AddSupplier();
+            addSupplier.setName(nameTF.getText().trim());
+            addSupplier.setAddress(addressTF.getText().trim());
+            addSupplier.setEmail(emailTF.getText().trim().toLowerCase());
+            addSupplier.setPhone(phoneTF.getText().trim());
+            addSupplier.setCity(cityTF.getText().trim());
+            addSupplier.setState(stateTF.getText().trim());
+            addSupplier.setContactName(contactNameTF.getText().trim());
+
+            if (addSupplier.add()) {
+
+                DialogController.showDialog("Add Successful", "Supplier: " + addSupplier.getName() +
+                        " was successfully added.", new Image(DialogController.SUCCESS_ICON));
+                ApplicationUtils.setTextFieldsEmpty(textFields);
+            } else {
+                DialogController.showDialog("Add Failed", "Supplier: " + addSupplier.getName() +
+                        " could not be added, please try again.", new Image(DialogController.ERROR_ICON));
+            }
+        }
+    }
+}
 
