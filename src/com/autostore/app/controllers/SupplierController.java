@@ -1,8 +1,8 @@
 package com.autostore.app.controllers;
 
+import com.autostore.app.model.CustomerInvoiceModel;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.supplier.*;
-import com.autostore.app.model.SupplierTableModel;
 import com.autostore.app.supplier.SearchSupplier;
 import com.autostore.app.utils.ApplicationUtils;
 import javafx.collections.FXCollections;
@@ -15,6 +15,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.util.Callback;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 
@@ -54,34 +55,34 @@ public class SupplierController implements Initializable {
     private Button clearButton;
 
     @FXML
-    private TableView<SupplierTableModel> supplierTable;
+    private TableView<Supplier> supplierTable;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> nameColumn;
+    private TableColumn<Supplier, String> nameColumn;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> addressColumn;
+    private TableColumn<Supplier, String> addressColumn;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> cityColumn;
+    private TableColumn<Supplier, String> cityColumn;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> stateColumn;
+    private TableColumn<Supplier, String> stateColumn;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> emailColumn;
+    private TableColumn<Supplier, String> emailColumn;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> phoneColumn;
+    private TableColumn<Supplier, String> phoneColumn;
 
     @FXML
-    private TableColumn<SupplierTableModel, String> contactNameColumn;
+    private TableColumn<Supplier, String> contactNameColumn;
 
     @FXML
     private Tab purchaseHistoryTab;
 
     @FXML
-    private ListView<?> invoiceSumListView;
+    private ListView<CustomerInvoiceModel> invoiceSumListView;
 
     @FXML
     private Label discountLabel;
@@ -96,25 +97,25 @@ public class SupplierController implements Initializable {
     private Label totalLabel;
 
     @FXML
-    private TableView<?> purchaseHistoryTable;
+    private TableView<SupplierInvoice> purchaseHistoryTable;
 
     @FXML
-    private TableColumn<?, ?> purchaseIDColumn;
+    private TableColumn<SupplierInvoice, Integer> purchaseIDColumn;
 
     @FXML
-    private TableColumn<?, ?> orderDateColumn;
+    private TableColumn<SupplierInvoice, Date> orderDateColumn;
 
     @FXML
-    private TableColumn<?, ?> discountColumn;
+    private TableColumn<SupplierInvoice, Double> discountColumn;
 
     @FXML
-    private TableColumn<?, ?> subTotalColumn;
+    private TableColumn<SupplierInvoice, Double> subTotalColumn;
 
     @FXML
-    private TableColumn<?, ?> taxColumn;
+    private TableColumn<SupplierInvoice, Double> taxColumn;
 
     @FXML
-    private TableColumn<?, ?> totalColumn;
+    private TableColumn<SupplierInvoice, Double> totalColumn;
 
     @FXML
     private TextField searchTF;
@@ -129,7 +130,7 @@ public class SupplierController implements Initializable {
     private ComboBox<SearchByCBModel> searchByComboBox;
 
     private TextField[] textFields;
-    private SupplierTableModel suppSelectedTableRow;
+    private Supplier suppSelectedTableRow;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
@@ -141,7 +142,7 @@ public class SupplierController implements Initializable {
 
         initSupplierTable();
         initSearchComboBox();
-        //initInvoiceTable();
+        initPurchaseHistoryTable();
         fillSupplierDataForm();
         // fillInvoiceSummaryList();
 
@@ -231,6 +232,15 @@ public class SupplierController implements Initializable {
         updateButton.setDisable(true);
     }
 
+    private void initPurchaseHistoryTable() {
+        purchaseIDColumn.setCellValueFactory(new PropertyValueFactory<>("orderID"));
+        orderDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+        discountColumn.setCellValueFactory(new PropertyValueFactory<>("discount"));
+        subTotalColumn.setCellValueFactory(new PropertyValueFactory<>("subTotal"));
+        taxColumn.setCellValueFactory(new PropertyValueFactory<>("tax"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<>("total"));
+    }
+
     private void fillSupplierDataForm() {
 
         supplierTable.setOnMouseClicked(event -> {
@@ -251,15 +261,36 @@ public class SupplierController implements Initializable {
                         stateTF.setText(suppSelectedTableRow.getState());
                         contactNameTF.setText(suppSelectedTableRow.getContactName());
 
-                        //searchInvoice(suppSelectedTableRow.getSupplierID());
+                        searchInvoice(suppSelectedTableRow.getSupplierID());
 
                         addButton.setDisable(true);
                         updateButton.setDisable(false);
-                        //clearInvoiceHistoryForm();
+                        clearInvoiceHistoryForm();
                     }
                 }
             }
         });
+    }
+
+    private void searchInvoice(int supplierID) {
+
+        SearchSupplierInvoice invoice = new SearchSupplierInvoice();
+        invoice.searchInvoiceData(supplierID);
+
+        if(!invoice.getSupplierData().isEmpty()) {
+            purchaseHistoryTable.setItems(invoice.getSupplierData());
+        } else {
+            purchaseHistoryTable.getItems().clear();
+        }
+
+    }
+
+    private void clearInvoiceHistoryForm() {
+        discountLabel.setText("Discount:");
+        subTotalLabel.setText("Sub-Total:");
+        taxesLabel.setText("Tax:");
+        totalLabel.setText("Total:");
+        invoiceSumListView.getItems().clear();
     }
 
     private void addSupplier() {

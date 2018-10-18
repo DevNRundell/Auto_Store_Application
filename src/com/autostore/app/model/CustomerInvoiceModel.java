@@ -32,10 +32,4 @@ public class CustomerInvoiceModel {
     public void setDescription(String description) {
         this.description = description;
     }
-    public double getCustomerPrice() {
-        return customerPrice;
-    }
-    public void setCustomerPrice(double customerPrice) {
-        this.customerPrice = customerPrice;
-    }
 }

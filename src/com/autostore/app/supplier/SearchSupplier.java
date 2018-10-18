@@ -14,7 +14,7 @@ import javafx.collections.ObservableList;
 
 public class SearchSupplier extends Supplier {
 
-    private ObservableList<SupplierTableModel> supplierData = FXCollections.observableArrayList();
+    private ObservableList<Supplier> supplierData = FXCollections.observableArrayList();
 
     public void searchSupplierData(String query, String searchValue) {
 
@@ -59,8 +59,6 @@ public class SearchSupplier extends Supplier {
         }
     }
 
-    public ObservableList<SupplierTableModel> getSupplierData() {
-        return supplierData;
-    }
+    public ObservableList<Supplier> getSupplierData() {return supplierData;}
 
 }

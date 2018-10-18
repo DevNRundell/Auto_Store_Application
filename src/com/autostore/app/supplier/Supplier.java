@@ -1,6 +1,6 @@
 package com.autostore.app.supplier;
 
-public abstract class Supplier {
+public class Supplier {
 
     int supplierID;
     String name;
