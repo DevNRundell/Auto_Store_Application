@@ -1,6 +1,7 @@
 package com.autostore.app.controllers;
 
 import com.autostore.app.model.SearchByCBModel;
+import com.autostore.app.supplier.*;
 import com.autostore.app.model.SupplierTableModel;
 import com.autostore.app.supplier.SearchSupplier;
 import com.autostore.app.utils.ApplicationUtils;
@@ -45,9 +46,6 @@ public class SupplierController implements Initializable {
 
     @FXML
     private Button addButton;
-
-    @FXML
-    private Button removeButton;
 
     @FXML
     private Button updateButton;
@@ -139,17 +137,18 @@ public class SupplierController implements Initializable {
         textFields = new TextField[]{nameTF, addressTF, emailTF, phoneTF, cityTF, stateTF, contactNameTF};
 
         searchTypeComboBox.getItems().setAll("Absolute", "Relative");
-        searchTypeComboBox.getSelectionModel().selectFirst();
+        searchTypeComboBox.getSelectionModel().selectLast();
 
         initSupplierTable();
         initSearchComboBox();
         //initInvoiceTable();
-        //fillSupplierDataForm();
+        fillSupplierDataForm();
         // fillInvoiceSummaryList();
 
         searchButton.setOnAction(event -> searchSupplier());
         clearButton.setOnAction(event -> clearForm());
-        //addButton.setOnAction(event -> addSupplier());
+        addButton.setOnAction(event -> addSupplier());
+        updateButton.setOnAction(event -> updateSupplier());
 
 
     }
@@ -169,7 +168,6 @@ public class SupplierController implements Initializable {
     private void clearForm() {
         ApplicationUtils.setTextFieldsEmpty(textFields);
         updateButton.setDisable(true);
-        removeButton.setDisable(true);
         addButton.setDisable(false);
         suppSelectedTableRow = null;
     }
@@ -232,30 +230,96 @@ public class SupplierController implements Initializable {
 
         updateButton.setDisable(true);
     }
-}
 
-//    private void addSupplier() {
-//
-//        if(!ApplicationUtils.isTextFieldEmpty(textFields)) {
-//
-//            AddSupplier addSupplier = new AddSupplier();
-//            addSupplier.setName(nameTF.getText().trim());
-//            addSupplier.setAddress(addressTF.getText().trim());
-//            addSupplier.setEmail(emailTF.getText().trim().toLowerCase());
-//            addSupplier.setPhone(phoneTF.getText().trim());
-//            addSupplier.setCity(cityTF.getText().trim());
-//            addSupplier.setState(stateTF.getText().trim());
-//            addSupplier.setContactName(contactNameTF.getText().trim());
-//
-//            if(addSupplier.add()) {
-//
-//                DialogController.showDialog("Add Successful", "Supplier: " + addSupplier.getName() +
-//                        " was successfully added.", new Image(DialogController.SUCCESS_ICON));
-//                ApplicationUtils.setTextFieldsEmpty(textFields);
-//            } else {
-//                DialogController.showDialog("Add Failed", "Supplier: " + addSupplier.getName() +
-//                        " could not be added, please try again.", new Image(DialogController.ERROR_ICON));
-//            }
-//        }
-//    }
+    private void fillSupplierDataForm() {
+
+        supplierTable.setOnMouseClicked(event -> {
+
+            if (!supplierTable.getItems().isEmpty()) {
+
+                if (event.getClickCount() == 1) {
+
+                    suppSelectedTableRow = supplierTable.getSelectionModel().getSelectedItem();
+
+                    if (suppSelectedTableRow != null) {
+
+                        nameTF.setText(suppSelectedTableRow.getName());
+                        addressTF.setText(suppSelectedTableRow.getAddress());
+                        emailTF.setText(suppSelectedTableRow.getEmail());
+                        phoneTF.setText(suppSelectedTableRow.getPhone());
+                        cityTF.setText(suppSelectedTableRow.getCity());
+                        stateTF.setText(suppSelectedTableRow.getState());
+                        contactNameTF.setText(suppSelectedTableRow.getContactName());
+
+                        //searchInvoice(suppSelectedTableRow.getSupplierID());
+
+                        addButton.setDisable(true);
+                        updateButton.setDisable(false);
+                        //clearInvoiceHistoryForm();
+                    }
+                }
+            }
+        });
+    }
+
+    private void addSupplier() {
+
+        if (!ApplicationUtils.isTextFieldEmpty(textFields)) {
+
+            AddSupplier addSupplier = new AddSupplier();
+            addSupplier.setName(nameTF.getText().trim());
+            addSupplier.setAddress(addressTF.getText().trim());
+            addSupplier.setEmail(emailTF.getText().trim().toLowerCase());
+            addSupplier.setPhone(phoneTF.getText().trim());
+            addSupplier.setCity(cityTF.getText().trim());
+            addSupplier.setState(stateTF.getText().trim());
+            addSupplier.setContactName(contactNameTF.getText().trim());
+
+            if (addSupplier.add()) {
+
+                DialogController.showDialog("Add Successful", "Supplier: " + addSupplier.getName() +
+                        " was successfully added.", new Image(DialogController.SUCCESS_ICON));
+                ApplicationUtils.setTextFieldsEmpty(textFields);
+            } else {
+                DialogController.showDialog("Add Failed", "Supplier: " + addSupplier.getName() +
+                        " could not be added, please try again.", new Image(DialogController.ERROR_ICON));
+            }
+        }
+    }
+
+    private void updateSupplier() {
+
+        if(suppSelectedTableRow != null) {
+
+            Alert updateAlert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to make these changes?", ButtonType.YES, ButtonType.NO);
+            updateAlert.showAndWait();
+
+            if (updateAlert.getResult() == ButtonType.YES) {
+
+                UpdateSupplier updateSupplier = new UpdateSupplier();
+
+                updateSupplier.setSupplierID(suppSelectedTableRow.getSupplierID());
+                updateSupplier.setName(nameTF.getText().trim());
+                updateSupplier.setAddress(addressTF.getText().trim());
+                updateSupplier.setEmail(emailTF.getText().trim().toLowerCase());
+                updateSupplier.setPhone(phoneTF.getText().trim());
+                updateSupplier.setCity(cityTF.getText().trim());
+                updateSupplier.setState(stateTF.getText().trim());
+                updateSupplier.setContactName(contactNameTF.getText().trim());
+
+                if (updateSupplier.update()) {
+                    DialogController.showDialog("Update Successful", "Supplier: " + updateSupplier.getName() +
+                            " was successfully updated.", new Image(DialogController.SUCCESS_ICON));
+                    ApplicationUtils.setTextFieldsEmpty(textFields);
+                    updateButton.setDisable(true);
+                } else {
+                    DialogController.showDialog("Update Failed", "Supplier: " + updateSupplier.getName() +
+                            " failed to update.", new Image(DialogController.ERROR_ICON));
+                }
+                supplierTable.refresh();
+            }
+        }
+    }
+
+}
 

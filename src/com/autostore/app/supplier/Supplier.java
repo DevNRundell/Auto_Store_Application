@@ -14,9 +14,7 @@ public abstract class Supplier {
     public int getSupplierID() {
         return supplierID;
     }
-    public void setSupplierID(int supplierID) {
-        this.supplierID = supplierID;
-    }
+    public void setSupplierID(int supplierID) {this.supplierID = supplierID;}
     public String getName() {
         return name;
     }
@@ -32,7 +30,5 @@ public abstract class Supplier {
     public String getPhone() {return phone;}
     public void setPhone(String phone) {this.phone = phone;}
     public String getContactName() {return contactName;}
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
+    public void setContactName(String contactName) {this.contactName = contactName;}
 }

@@ -42,7 +42,7 @@ public class SearchSupplier extends Supplier {
                     supplierModel.setPhone(resultSet.getString("phone"));
                     supplierModel.setCity(resultSet.getString("city"));
                     supplierModel.setState(resultSet.getString("state"));
-                    supplierModel.setContactName(resultSet.getString("contact"));
+                    supplierModel.setContactName(resultSet.getString("contact_name"));
 
                     supplierData.add(supplierModel);
 
