@@ -15,15 +15,6 @@ import javafx.scene.layout.Region;
 public class MainApplicationController implements Initializable {
 
     @FXML
-    private BorderPane mainBorderPane;
-
-    @FXML
-    private HBox menuHBox;
-
-    @FXML
-    private ButtonBar menuButtonBar;
-
-    @FXML
     private Button customerButton;
 
     @FXML
@@ -31,9 +22,6 @@ public class MainApplicationController implements Initializable {
 
     @FXML
     private Button inventoryButton;
-
-    @FXML
-    private Button accountingButton;
 
     @FXML
     private Pane contentPane;
@@ -96,10 +84,6 @@ public class MainApplicationController implements Initializable {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		});
-		
-		accountingButton.setOnAction(event -> {
-			//load accounting pane
 		});
 	}
 }

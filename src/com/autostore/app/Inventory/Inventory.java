@@ -5,6 +5,7 @@ public class Inventory {
     int inventoryID;
     String name;
     int stockQuantity;
+    int quantityToOrder;
     double unitPrice;
     String description;
 
@@ -38,5 +39,10 @@ public class Inventory {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    public int getQuantityToOrder() {
+        return quantityToOrder;
+    }
+    public void setQuantityToOrder(int quantityToOrder) {
+        this.quantityToOrder = quantityToOrder;
+    }
 }

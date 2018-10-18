@@ -26,12 +26,4 @@ public class ApplicationUtils {
 		return false;
 	}
 
-	public static boolean isEmailValid(String email) {
-
-		String pattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-
-        return email.matches(pattern);
-
-    }
-
 }

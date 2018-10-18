@@ -2,15 +2,19 @@ package com.autostore.app.controllers;
 
 import com.autostore.app.Inventory.Inventory;
 import com.autostore.app.Inventory.SearchInventory;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import com.autostore.app.accounting.Accounting;
+import com.autostore.app.customer.SubmitOrder;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class CustomerOrderController implements Initializable {
@@ -53,57 +57,154 @@ public class CustomerOrderController implements Initializable {
 
     @FXML
     private Label headerLabel;
+
+    @FXML
+    private BorderPane pane;
     private int customerID;
     private double subTotal;
     private double discount;
-    private double TAX_RATE = .06;
     private double tax;
     private double total;
+    private static double TAX_RATE = .06;
     private DecimalFormat format = new DecimalFormat(",###.##");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        discountCB.getItems().setAll("5%", "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%", "50%", "55%", "60%",
+        discountCB.getItems().setAll("No Discount", "5%", "10%", "15%", "20%", "25%", "30%", "35%", "40%", "45%", "50%", "55%", "60%",
                                     "65%", "70%", "75%");
+        discountCB.getSelectionModel().selectFirst();
 
         initInventoryTable();
         loadInventory();
         setInvoiceListViewCustomCell();
         initAddItemMouseEvent();
-        initDiscountCBListener();
+        initRemoveItemMouseEvent();
 
         subTotal = 0;
         discount = 0;
+        tax = 0;
         total = 0;
 
-        removeItemButton.setOnAction(event -> removeItem());
-
-    }
-
-    private void initDiscountCBListener() {
-
-        discountCB.selectionModelProperty().addListener((observable, oldValue, newValue) -> {
-            discount = subTotal + (subTotal * Integer.parseInt(discountCB.getSelectionModel().getSelectedItem().substring(0, '%' - 1)));
-            setOrderAmounts();
-
-            //doesnt work fix
+        removeItemButton.setOnAction(event -> {
+            Inventory removeItem = itemListView.getSelectionModel().getSelectedItem();
+            removeItem(removeItem);
         });
+        submitButton.setOnAction(event -> submitOrder());
+        discountCB.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> setDiscount());
     }
 
-    private void removeItem() {
+    private void submitOrder() {
 
-        Inventory removeItem = itemListView.getSelectionModel().getSelectedItem();
+        ArrayList<Inventory> itemsOrdered = new ArrayList<>(itemListView.getItems());
 
-        if(removeItem != null) {
+        if(!itemsOrdered.isEmpty()) {
 
-            subTotal -= removeItem.getUnitPrice();
-            tax = (TAX_RATE * subTotal);
+            SubmitOrder order = new SubmitOrder();
+
+            if(order.add(tax, subTotal, discount, total, customerID)) {
+
+                order.addOrderToOrderLine(itemsOrdered);
+
+                Accounting updateBalance = new Accounting();
+                updateBalance.addToBalance(total);
+
+                DialogController.showDialog("Order Submitted", "Your order has been successfully submitted",
+                                                 new Image(DialogController.SUCCESS_ICON));
+
+                Stage stage = (Stage) pane.getScene().getWindow();
+                stage.close();
+
+            } else {
+                DialogController.showDialog("Order Not Submitted", "Your order could not be submitted",
+                        new Image(DialogController.ERROR_ICON));
+            }
+        } else {
+            DialogController.showDialog("Order Empty", "Your cart is empty.", new Image(DialogController.INFO_ICON));
+        }
+    }
+
+    private void updateQuantity(Inventory item) {
+
+        if(item != null) {
+
+            if(item.getQuantityToOrder() < item.getStockQuantity()) {
+                item.setQuantityToOrder(item.getQuantityToOrder() + 1);
+                subTotal += item.getUnitPrice();
+                tax = TAX_RATE * subTotal;
+                total = ((subTotal + tax) - discount);
+                setDiscount();
+                setOrderAmounts();
+            } else {
+                DialogController.showDialog("Not Enough Stock", "You may not exceed stock limit.",
+                                            new Image(DialogController.ERROR_ICON));
+            }
+        }
+    }
+
+    private void setDiscount() {
+
+        String discountValue = discountCB.getSelectionModel().getSelectedItem();
+
+        if(discountValue.equals("No Discount")) {
+            discount = 0.0;
+        } else if(Double.parseDouble(discountValue.substring(0, (discountValue.indexOf('%')))) < 9) {
+            discount = subTotal * Double.parseDouble(".0" + discountValue.substring(0, (discountValue.indexOf('%'))));
+        } else {
+            discount = subTotal * Double.parseDouble("." + discountValue.substring(0, (discountValue.indexOf('%'))));
+        }
+
+        tax = TAX_RATE * subTotal;
+        total = ((subTotal + tax) - discount);
+        setOrderAmounts();
+    }
+
+    private void removeItem(Inventory Item) {
+
+        if(Item != null) {
+
+            subTotal -= (Item.getUnitPrice() * Item.getQuantityToOrder());
+            tax = TAX_RATE * subTotal;
             total = ((subTotal + tax) - discount);
+            setDiscount();
             setOrderAmounts();
 
-            itemListView.getItems().remove(removeItem);
+            itemListView.getItems().remove(Item);
         }
+    }
+
+    private void removeItemQuantity(Inventory item) {
+
+        if(item != null) {
+
+            if(item.getQuantityToOrder() > 1) {
+                item.setQuantityToOrder(item.getQuantityToOrder() - 1);
+                subTotal -= item.getUnitPrice();
+                tax = TAX_RATE * subTotal;
+                total = ((subTotal + tax) - discount);
+                setDiscount();
+                setOrderAmounts();
+
+                itemListView.refresh();
+            } else {
+                removeItem(item);
+            }
+        }
+    }
+
+    private void initRemoveItemMouseEvent() {
+
+        itemListView.setOnMouseClicked(event ->  {
+
+            if(event.getClickCount() == 2) {
+
+                Inventory item = itemListView.getSelectionModel().getSelectedItem();
+
+                if(item != null) {
+                    removeItemQuantity(item);
+                }
+            }
+        });
     }
 
     private void initAddItemMouseEvent() {
@@ -118,20 +219,37 @@ public class CustomerOrderController implements Initializable {
 
                     if(item != null) {
 
-                        Inventory model = new Inventory();
-                        model.setPartName(item.getPartName());
-                        model.setInventoryID(item.getInventoryID());
-                        model.setDescription(item.getDescription());
-                        model.setUnitPrice(item.getUnitPrice());
+                        boolean itemExists = false;
 
-                        subTotal += item.getUnitPrice();
-                        tax = (TAX_RATE * subTotal);
-                        total = ((subTotal + tax) - discount);
+                        for(Inventory checkItem: itemListView.getItems()) {
 
-                        itemListView.getItems().add(model);
+                            if(item.getInventoryID() == checkItem.getInventoryID()) {
+                                updateQuantity(checkItem);
+                                itemExists = true;
+                            }
+                        }
 
-                        setOrderAmounts();
+                        if(!itemExists) {
+
+                            Inventory model = new Inventory();
+                            model.setPartName(item.getPartName());
+                            model.setInventoryID(item.getInventoryID());
+                            model.setDescription(item.getDescription());
+                            model.setUnitPrice(item.getUnitPrice());
+                            model.setStockQuantity(item.getStockQuantity());
+                            model.setQuantityToOrder(1);
+
+                            subTotal += item.getUnitPrice();
+                            tax = TAX_RATE * subTotal;
+                            total = ((subTotal + tax) - discount);
+
+                            itemListView.getItems().add(model);
+
+                            setDiscount();
+                            setOrderAmounts();
+                        }
                     }
+                    itemListView.refresh();
                 }
             }
         });
@@ -151,7 +269,8 @@ public class CustomerOrderController implements Initializable {
                         if (item != null) {
                             setText("Item: " + item.getPartName() + "\n" +
                                     "Description: " + item.getDescription() + "\n" +
-                                    "Unit Price: $" + item.getUnitPrice());
+                                    "Unit Price: $" + item.getUnitPrice() + "\n" +
+                                    "Quantity Selected: " + item.getQuantityToOrder());
                         } else {
                             setText(null);
                         }
@@ -179,10 +298,10 @@ public class CustomerOrderController implements Initializable {
 
     }
 
-    public void setCustomerID(int customerID) {
+    void setCustomerID(int customerID) {
         this.customerID = customerID;
     }
-    public void setHeaderLabel(String customerName){headerLabel.setText("Customer: " + customerName);}
+    void setHeaderLabel(String customerName){headerLabel.setText("Customer: " + customerName);}
     private void setOrderAmounts() {
 
         subTotalLabel.setText("Sub-Total: $" + format.format(subTotal));

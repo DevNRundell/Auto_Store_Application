@@ -33,7 +33,7 @@ public class DialogController implements Initializable {
     private Button okayButton;
     public final static String ERROR_ICON = "com/autostore/app/images/error_icon.png";
     public final static String SUCCESS_ICON = "com/autostore/app/images/success_icon.png";
-    public final static String INFO_ICON = "com/autostore/app/images/error_icon";
+    public final static String INFO_ICON = "com/autostore/app/images/info_icon.png";
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
