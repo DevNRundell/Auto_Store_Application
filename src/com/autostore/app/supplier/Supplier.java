@@ -14,7 +14,9 @@ public class Supplier {
     public int getSupplierID() {
         return supplierID;
     }
-    public void setSupplierID(int supplierID) {this.supplierID = supplierID;}
+    public void setSupplierID(int supplierID) {
+        this.supplierID = supplierID;
+    }
     public String getName() {
         return name;
     }

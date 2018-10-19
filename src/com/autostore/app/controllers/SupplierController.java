@@ -17,6 +17,23 @@ import javafx.util.Callback;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 
 public class SupplierController implements Initializable {
@@ -329,6 +346,7 @@ public class SupplierController implements Initializable {
 
                 UpdateSupplier updateSupplier = new UpdateSupplier();
 
+                int temp = suppSelectedTableRow.getSupplierID();
                 updateSupplier.setSupplierID(suppSelectedTableRow.getSupplierID());
                 updateSupplier.setName(nameTF.getText().trim());
                 updateSupplier.setAddress(addressTF.getText().trim());
