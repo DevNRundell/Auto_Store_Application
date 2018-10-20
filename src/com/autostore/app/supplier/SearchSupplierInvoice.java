@@ -37,7 +37,7 @@ public class SearchSupplierInvoice {
 
                         SupplierInvoice invoiceModel = new SupplierInvoice();
 
-                        invoiceModel.setOrderID(resultSet.getInt("order_id"));
+                        invoiceModel.setOrderID(resultSet.getInt("purchase_id"));
                         invoiceModel.setDate(resultSet.getDate("date"));
                         invoiceModel.setTax(resultSet.getDouble("tax"));
                         invoiceModel.setSubTotal(resultSet.getDouble("sub_total"));

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import com.autostore.app.controllers.DialogController;
 import com.autostore.app.database.DBConnect;
 import com.autostore.app.database.DBUtils;
-import com.autostore.app.model.SupplierTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -34,8 +33,8 @@ public class SearchSupplier extends Supplier {
 
                 while(resultSet.next()) {
 
-                    SupplierTableModel supplierModel = new SupplierTableModel();
-                    supplierModel.setSupplier_id(resultSet.getInt("supplier_id"));
+                    Supplier supplierModel = new Supplier();
+                    supplierModel.setSupplierID(resultSet.getInt("supplier_id"));
                     supplierModel.setName(resultSet.getString("name"));
                     supplierModel.setAddress(resultSet.getString("address"));
                     supplierModel.setEmail(resultSet.getString("email"));
