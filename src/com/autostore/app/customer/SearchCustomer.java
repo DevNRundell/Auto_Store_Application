@@ -8,13 +8,12 @@ import java.sql.SQLException;
 import com.autostore.app.controllers.DialogController;
 import com.autostore.app.database.DBConnect;
 import com.autostore.app.database.DBUtils;
-import com.autostore.app.model.CustomerTableModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SearchCustomer extends Customer {
 	
-	private ObservableList<CustomerTableModel> customerData = FXCollections.observableArrayList();
+	private ObservableList<Customer> customerData = FXCollections.observableArrayList();
 
 	public void searchCustomerData(String query, String searchValue) {
 
@@ -34,9 +33,9 @@ public class SearchCustomer extends Customer {
 
 				while(resultSet.next()) {
 
-					CustomerTableModel customerModel = new CustomerTableModel();
+					Customer customerModel = new Customer();
 
-					customerModel.setCustomer_id(resultSet.getInt("customer_id"));
+					customerModel.setCustomerID(resultSet.getInt("customer_id"));
 					customerModel.setFirstName(resultSet.getString("first_name"));
 					customerModel.setLastName(resultSet.getString("last_name"));
 					customerModel.setAddress(resultSet.getString("address"));
@@ -61,7 +60,7 @@ public class SearchCustomer extends Customer {
 		}
 	}
 	
-	public ObservableList<CustomerTableModel> getCustomerData() {
+	public ObservableList<Customer> getCustomerData() {
 		return customerData;
 	}
 

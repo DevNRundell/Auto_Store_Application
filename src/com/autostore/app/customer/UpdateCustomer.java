@@ -14,15 +14,15 @@ public class UpdateCustomer extends Customer {
 
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
+
 		try {
-			
+
 			connection = DBConnect.getConnection();
-			
+
 			if(!connection.isClosed()) {
-				
+
 				String query = "update customer_info set first_name = ?, last_name = ?, address = ?, email = ?, phone = ?, city = ?, state = ?, zip_code = ? where customer_id = ?";
-				
+
 				connection.setAutoCommit(false);
 				preparedStatement = connection.prepareStatement(query);
 				preparedStatement.setString(1, firstName);
@@ -34,14 +34,14 @@ public class UpdateCustomer extends Customer {
 				preparedStatement.setString(7, state);
 				preparedStatement.setString(8, zipCode);
 				preparedStatement.setInt(9, customerID);
-				
+
 				preparedStatement.executeUpdate();
 				connection.commit();
 
 				return true;
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			DialogController.showDatabaseError();

@@ -29,11 +29,6 @@
                   <Insets right="15.0" />
                </HBox.margin>
             </Button>
-          <Button fx:id="accountingButton" mnemonicParsing="false" text="Accounting" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets right="15.0" />
-               </HBox.margin>
-            </Button>
          </children>
          <BorderPane.margin>
             <Insets />

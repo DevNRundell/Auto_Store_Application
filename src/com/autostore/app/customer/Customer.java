@@ -1,6 +1,6 @@
 package com.autostore.app.customer;
 
-public abstract class Customer {
+public class Customer {
 
 	int customerID;
 	String firstName;

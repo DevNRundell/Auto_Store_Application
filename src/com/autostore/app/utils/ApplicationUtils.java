@@ -1,5 +1,6 @@
 package com.autostore.app.utils;
 
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ApplicationUtils {
@@ -7,6 +8,12 @@ public class ApplicationUtils {
 	public static void setTextFieldsEmpty(TextField[] textFields) {
 		for(TextField textField : textFields) {
 			textField.clear();
+		}
+	}
+
+	public static void setTextAreaEmpty(TextArea[] textAreas) {
+		for(TextArea textArea : textAreas) {
+			textArea.clear();
 		}
 	}
 
@@ -18,13 +25,5 @@ public class ApplicationUtils {
 		}
 		return false;
 	}
-
-	public static boolean isEmailValid(String email) {
-
-		String pattern = "^[\\w!#$%&’*+/=?`{|}~^-]+(?:\\.[\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
-
-        return email.matches(pattern);
-
-    }
 
 }
