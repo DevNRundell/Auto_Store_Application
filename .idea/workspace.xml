@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dd650f0d-8c87-4f5f-993e-2ffe30615d8a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierOrderController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_order_window.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/autostore/app/model/SupplierInvoiceModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplierInvoiceItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/autostore/app/supplier/SubmitOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/model/SupplierTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplierInvoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplierInvoice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Auto Store Application/com/autostore/app/fxml/supplier_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Auto Store Application/com/autostore/app/fxml/supplier_window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_window.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_window.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/autostore/app/model/CustomerInvoiceModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/autostore/app/model/CustomerInvoiceModel.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -165,29 +171,29 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="7" />
-          <entry key="fxml" value="12" />
-          <entry key="java" value="53" />
+          <entry key="fxml" value="20" />
+          <entry key="java" value="77" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="7" />
-          <entry key="JAVA" value="53" />
-          <entry key="XML" value="12" />
+          <entry key="JAVA" value="77" />
+          <entry key="XML" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="class" value="53" />
-          <entry key="fxml" value="4" />
-          <entry key="java" value="555" />
+          <entry key="fxml" value="13" />
+          <entry key="java" value="898" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="53" />
-          <entry key="JAVA" value="555" />
-          <entry key="XML" value="4" />
+          <entry key="JAVA" value="898" />
+          <entry key="XML" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project" />
@@ -196,21 +202,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplier.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-357">
-              <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+            <state relative-caret-position="-46">
+              <caret line="183" column="17" selection-start-line="183" selection-start-column="17" selection-end-line="183" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#12564#13174#0" expanded="true" />
+                <element signature="e#13173#13174#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/inventory_window.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/SubmitOrder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="569">
-              <caret line="66" column="71" selection-start-line="66" selection-start-column="71" selection-end-line="66" selection-end-column="71" />
+            <state relative-caret-position="918">
+              <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/supplier/SubmitOrder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="52" column="42" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierOrderController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-493">
+              <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerOrderController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1802">
+              <caret line="106" column="56" lean-forward="true" selection-start-line="106" selection-start-column="56" selection-end-line="106" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -220,31 +266,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Remove</find>
-      <find>supplier_info</find>
-      <find>add</find>
-      <find>setContactName</find>
-      <find>phoneTF</find>
-      <find>update</find>
-      <find>customerID</find>
-      <find>getCustomer</find>
-      <find>SupplierTableModel</find>
-      <find>getCustomerData</find>
-      <find>suppSe</find>
-      <find>selected</find>
-      <find>searchInvoice</find>
-      <find>Customer</find>
-      <find>SupplierInvoice</find>
-      <find>discount</find>
-      <find>invoiceDiscountLabel</find>
-      <find>getCustomerID</find>
-      <find>contactName</find>
       <find>updateCust</find>
       <find>getSupplierID</find>
       <find>getCustomer_id</find>
@@ -256,9 +284,29 @@
       <find>suppSelectedTableRow</find>
       <find>Model</find>
       <find>Update</find>
+      <find>getQtyOrdered</find>
+      <find>CustomerInvoiceModel</find>
+      <find>setInvoiceListViewCustomCell</find>
+      <find>invoiceSummar</find>
+      <find>invoiceSum</find>
+      <find>fillInvoiceSummaryList</find>
+      <find>newOrder</find>
+      <find>Customer</find>
+      <find>Invoice</find>
+      <find>tableView</find>
+      <find>TableView</find>
+      <find>invoice</find>
+      <find>invoiceTable</find>
+      <find>customer</find>
+      <find>custo</find>
+      <find>supplier_purchase</find>
+      <find>addOrderToPurchaseLine</find>
+      <find>addOrderToOrderLine</find>
+      <find>order</find>
     </findStrings>
     <replaceStrings>
       <replace>supp</replace>
+      <replace>purcahseHistoryTable</replace>
       <replace>Supplier</replace>
       <replace>supplier</replace>
     </replaceStrings>
@@ -310,7 +358,6 @@
         <option value="$PROJECT_DIR$/src/com/autostore/app/model/InvoiceTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/model/Invoice.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/customer/Invoice.java" />
-        <option value="$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomerInvoice.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomerInvoiceItem.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/customer/Customer.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomer.java" />
@@ -321,16 +368,22 @@
         <option value="$PROJECT_DIR$/src/com/autostore/app/Inventory/UpdateInventory.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerOrderController.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/controllers/InventoryController.java" />
-        <option value="$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_window.fxml" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/AddSupplier.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/UpdateSupplier.java" />
-        <option value="$PROJECT_DIR$/src/com/autostore/app/model/CustomerInvoiceModel.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/SupplierInvoice.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/model/SupplierTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/Supplier.java" />
-        <option value="$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplier.java" />
         <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplierInvoice.java" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomerInvoice.java" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_window.fxml" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_order_window.fxml" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/model/CustomerInvoiceModel.java" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/model/SupplierInvoiceModel.java" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplierInvoiceItem.java" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/supplier/SubmitOrder.java" />
+        <option value="$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierOrderController.java" />
       </list>
     </option>
   </component>
@@ -386,7 +439,7 @@
               <item name="Project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
+              <item name="Inventory" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Project" type="b2602c69:ProjectViewProjectNode" />
@@ -410,7 +463,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="customer&#9;FILE&#9;file://D:/System Development Project/Project/bin/com/autostore/app/model/CustomerTableModel.class&#10;customerTable&#9;FILE&#9;file://D:/System Development Project/Project/bin/com/autostore/app/model/CustomerTableModel.class&#10;update&#9;FILE&#9;file://D:/System Development Project/Project/src/com/autostore/app/customer/UpdateCustomer.java&#10;customerTa&#9;FILE&#9;file://D:/System Development Project/Project/bin/com/autostore/app/model/CustomerTableModel.class&#10;Customer&#9;FILE&#9;file://D:/System Development Project/Project/src/com/autostore/app/customer/CustomerInvoice.java&#10;log&#9;ACTION&#9;Log.KeymapGroup&#10;suppli&#9;FILE&#9;file://D:/System Development Project/Project/src/com/autostore/app/model/SupplierTableModel.java" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540002431279" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540105485407" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/autostore/app/jars/mysql-connector-java-5.1.34-bin.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -511,7 +564,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1924307" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1924307" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -520,7 +573,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49970552" weight="0.3299532" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48144877" visible="true" weight="0.28741866" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48144877" visible="true" weight="0.28741866" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.35791758" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -540,7 +593,7 @@
       <window_info anchor="right" id="Maven Projects" order="7" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1744325" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1924307" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -549,23 +602,24 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49970552" weight="0.3299532" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48144877" weight="0.09594384" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48144877" visible="true" weight="0.28741866" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.35791758" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49882215" weight="0.11700468" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50029445" side_tool="true" visible="true" weight="0.096622154" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49970552" weight="0.06864274" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49882215" weight="0.03432137" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.329718" />
+      <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49882215" weight="0.2483731" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50029445" side_tool="true" weight="0.096622154" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.49970552" weight="0.09110629" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49882215" weight="0.28308025" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" weight="0.32995737" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -582,16 +636,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="suppliers" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java</url>
-          <line>346</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
         <watch expression="this" />
@@ -599,55 +643,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.classpath">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Auto Store Application.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/com/autostore/app/customer/Customer.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/com/autostore/app/controllers/CustomerController.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1322" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/com/autostore/app/customer/SearchCustomer.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/dialog_window.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="185" selection-start-line="9" selection-start-column="185" selection-end-line="9" selection-end-column="185" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/database/DBConnect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="11" column="90" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/launch/LaunchApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/DeleteCustomer.java" />
     <entry file="file://$PROJECT_DIR$/bin/com/autostore/app/fxml/main_window.fxml">
       <provider editor-type-id="JavaFX-Scene-Builder" />
@@ -696,24 +691,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/model/CustomerTableModel.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomerInvoiceItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/model/CustomerInvoiceListModel.java" />
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/Inventory/AddInventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/Inventory/SearchInventory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -724,41 +702,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/Inventory/UpdateInventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="50" lean-forward="true" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/Inventory/Inventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/MainApplicationController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="68" column="13" lean-forward="true" selection-start-line="68" selection-start-column="13" selection-end-line="68" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerOrderController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="86" column="55" selection-start-line="86" selection-start-column="55" selection-end-line="86" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2038#2655#0" expanded="true" />
-            <element signature="e#2654#2655#0" expanded="true" />
-            <element signature="e#4332#4333#0" expanded="true" />
-            <element signature="e#4376#4377#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -797,13 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
           <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/model/CustomerInvoiceModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -874,29 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/customer_window.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1370">
-          <caret line="74" column="48" selection-start-line="74" selection-start-column="48" selection-end-line="74" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_window.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-816">
-          <caret line="93" column="48" selection-start-line="93" selection-start-column="48" selection-end-line="93" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomerInvoice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/com/autostore/app/model/CustomerTableModel.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -921,20 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="187" column="62" selection-start-line="187" selection-start-column="62" selection-end-line="187" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#14668#14912#0" expanded="true" />
-            <element signature="e#14911#14912#0" expanded="true" />
-            <element signature="e#15194#15804#0" expanded="true" />
-            <element signature="e#15803#15804#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/supplier/Supplier.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -949,16 +852,6 @@
           <folding>
             <element signature="e#241#242#0" expanded="true" />
             <element signature="e#271#272#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="348" column="64" lean-forward="true" selection-start-line="348" selection-start-column="64" selection-end-line="348" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -993,8 +886,182 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplier.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="54" column="54" lean-forward="true" selection-start-line="54" selection-start-column="54" selection-end-line="55" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomerInvoice.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/supplier/SupplierOrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="115" column="21" selection-start-line="115" selection-start-column="12" selection-end-line="115" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14668#14912#0" expanded="true" />
+            <element signature="e#14911#14912#0" expanded="true" />
+            <element signature="e#15194#15804#0" expanded="true" />
+            <element signature="e#15803#15804#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/customer_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="207" column="41" selection-start-line="207" selection-start-column="41" selection-end-line="207" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="117" column="39" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/customer_order_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="28" lean-forward="true" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/SearchCustomerInvoiceItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="38" lean-forward="true" selection-end-line="90" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/supplier/SearchSupplierInvoiceItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/fxml/supplier_order_window.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-357">
-          <caret line="9" column="42" selection-start-line="9" selection-start-column="42" selection-end-line="9" selection-end-column="42" />
+          <caret line="27" column="20" lean-forward="true" selection-start-line="27" selection-start-column="20" selection-end-line="27" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/model/CustomerInvoiceModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/model/SupplierInvoiceModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-46">
+          <caret line="183" column="17" selection-start-line="183" selection-start-column="17" selection-end-line="183" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12564#13174#0" expanded="true" />
+            <element signature="e#13173#13174#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/Inventory/UpdateInventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="31" column="50" lean-forward="true" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/Inventory/AddInventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/Inventory/Inventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="20" lean-forward="true" selection-start-line="4" selection-start-column="20" selection-end-line="4" selection-end-column="20" />
+          <folding>
+            <element signature="e#953#954#0" expanded="true" />
+            <element signature="e#999#1000#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/customer/SubmitOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="54" lean-forward="true" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/supplier/SubmitOrder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="52" column="42" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/CustomerOrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1802">
+          <caret line="106" column="56" lean-forward="true" selection-start-line="106" selection-start-column="56" selection-end-line="106" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/autostore/app/controllers/SupplierOrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-493">
+          <caret line="10" column="32" lean-forward="true" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
         </state>
       </provider>
     </entry>

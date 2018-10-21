@@ -111,6 +111,11 @@
                                     <Insets top="7.0" />
                                  </VBox.margin>
                               </Button>
+                              <Button fx:id="newOrderButton" alignment="CENTER" layoutX="20.0" layoutY="623.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="400.0" text="New Order">
+                                 <VBox.margin>
+                                    <Insets top="7.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

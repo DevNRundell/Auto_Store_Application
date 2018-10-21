@@ -6,7 +6,6 @@ public class CustomerInvoiceModel {
     private String name;
     private String description;
     private int qtyOrdered;
-    private double customerPrice;
 
     public int getQtyOrdered() {
         return qtyOrdered;

@@ -1,6 +1,8 @@
 package com.autostore.app.controllers;
 
-import com.autostore.app.model.CustomerInvoiceModel;
+import com.autostore.app.supplier.SupplierInvoice;
+import com.autostore.app.supplier.SearchSupplierInvoiceItem;
+import com.autostore.app.model.SupplierInvoiceModel;
 import com.autostore.app.model.SearchByCBModel;
 import com.autostore.app.supplier.*;
 import com.autostore.app.supplier.SearchSupplier;
@@ -8,6 +10,7 @@ import com.autostore.app.utils.ApplicationUtils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,7 +22,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -72,6 +74,9 @@ public class SupplierController implements Initializable {
     private Button clearButton;
 
     @FXML
+    private Button newOrderButton;
+
+    @FXML
     private TableView<Supplier> supplierTable;
 
     @FXML
@@ -99,7 +104,7 @@ public class SupplierController implements Initializable {
     private Tab purchaseHistoryTab;
 
     @FXML
-    private ListView<CustomerInvoiceModel> invoiceSumListView;
+    private ListView<SupplierInvoiceModel> invoiceSumListView;
 
     @FXML
     private Label discountLabel;
@@ -161,14 +166,42 @@ public class SupplierController implements Initializable {
         initSearchComboBox();
         initPurchaseHistoryTable();
         fillSupplierDataForm();
-        // fillInvoiceSummaryList();
+//        fillInvoiceSummaryList();
+        setInvoiceListViewCustomCell();
 
         searchButton.setOnAction(event -> searchSupplier());
         clearButton.setOnAction(event -> clearForm());
         addButton.setOnAction(event -> addSupplier());
         updateButton.setOnAction(event -> updateSupplier());
+        newOrderButton.setOnAction(event -> newOrder());
 
+    }
 
+    private void newOrder() {
+
+        if(suppSelectedTableRow != null) {
+
+            try {
+
+                FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("com/autostore/app/fxml/supplier_order_window.fxml"));
+                Pane root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setTitle("New Supplier Order");
+                stage.setResizable(false);
+                stage.show();
+
+                SupplierOrderController controller = loader.getController();
+                controller.setSupplierID(suppSelectedTableRow.getSupplierID());
+                controller.setHeaderLabel(suppSelectedTableRow.getName());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            DialogController.showDialog("Select A Supplier","Please select a supplier before creating a new order", new Image(DialogController.ERROR_ICON));
+        }
     }
 
     private void initSupplierTable() {
@@ -220,6 +253,36 @@ public class SupplierController implements Initializable {
             }
         });
     }
+
+//    private void fillInvoiceSummaryList() {
+//
+//        purcahseHistoryTable.setOnMouseClicked(event ->  {
+//
+//            if(!purcahseHistoryTable.getItems().isEmpty()) {
+//
+//                if(event.getClickCount() == 1) {
+//
+//                    SupplierInvoice invSelectedTableRow = purcahseHistoryTable.getSelectionModel().getSelectedItem();
+//
+//                    if(invSelectedTableRow != null) {
+//
+//                        SearchSupplierInvoiceItem invoiceData = new SearchSupplierInvoiceItem();
+//                        invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
+//
+//                        if(invoiceData.getInvoiceData() != null) {
+//
+//                            invoiceSumListView.setItems(invoiceData.getInvoiceData());
+//
+//                            invoiceDiscountLabel.setText("Discount: $" + String.valueOf(invSelectedTableRow.getDiscount()));
+//                            invoiceSubTotalLabel.setText("Sub-Total: $" + String.valueOf(invSelectedTableRow.getSubTotal()));
+//                            invoiceTaxesLabel.setText("Tax: $" + String.valueOf(invSelectedTableRow.getTax()));
+//                            invoiceTotalLabel.setText("Total: $" + String.valueOf(invSelectedTableRow.getTotal()));
+//                        }
+//                    }
+//                }
+//            }
+//        });
+//     }
 
     private void searchSupplier() {
 
@@ -346,7 +409,6 @@ public class SupplierController implements Initializable {
 
                 UpdateSupplier updateSupplier = new UpdateSupplier();
 
-                int temp = suppSelectedTableRow.getSupplierID();
                 updateSupplier.setSupplierID(suppSelectedTableRow.getSupplierID());
                 updateSupplier.setName(nameTF.getText().trim());
                 updateSupplier.setAddress(addressTF.getText().trim());
@@ -368,6 +430,30 @@ public class SupplierController implements Initializable {
                 supplierTable.refresh();
             }
         }
+    }
+
+    private void setInvoiceListViewCustomCell() {
+
+        invoiceSumListView.setCellFactory(new Callback<>() {
+
+            @Override
+            public ListCell<SupplierInvoiceModel> call(ListView<SupplierInvoiceModel> param) {
+                return new ListCell<>() {
+
+                    @Override
+                    protected void updateItem(SupplierInvoiceModel item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item != null) {
+                            setText("Item: " + item.getName() + "\n" +
+                                    "Description: " + item.getDescription() + "\n" +
+                                    "Quantity: " + item.getQtyOrdered());
+                        } else {
+                            setText(null);
+                        }
+                    }
+                };
+            }
+        });
     }
 
 }
