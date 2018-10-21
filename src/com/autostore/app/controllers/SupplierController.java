@@ -166,7 +166,7 @@ public class SupplierController implements Initializable {
         initSearchComboBox();
         initPurchaseHistoryTable();
         fillSupplierDataForm();
-//        fillInvoiceSummaryList();
+        fillInvoiceSummaryList();
         setInvoiceListViewCustomCell();
 
         searchButton.setOnAction(event -> searchSupplier());
@@ -254,35 +254,35 @@ public class SupplierController implements Initializable {
         });
     }
 
-//    private void fillInvoiceSummaryList() {
-//
-//        purcahseHistoryTable.setOnMouseClicked(event ->  {
-//
-//            if(!purcahseHistoryTable.getItems().isEmpty()) {
-//
-//                if(event.getClickCount() == 1) {
-//
-//                    SupplierInvoice invSelectedTableRow = purcahseHistoryTable.getSelectionModel().getSelectedItem();
-//
-//                    if(invSelectedTableRow != null) {
-//
-//                        SearchSupplierInvoiceItem invoiceData = new SearchSupplierInvoiceItem();
-//                        invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
-//
-//                        if(invoiceData.getInvoiceData() != null) {
-//
-//                            invoiceSumListView.setItems(invoiceData.getInvoiceData());
-//
-//                            invoiceDiscountLabel.setText("Discount: $" + String.valueOf(invSelectedTableRow.getDiscount()));
-//                            invoiceSubTotalLabel.setText("Sub-Total: $" + String.valueOf(invSelectedTableRow.getSubTotal()));
-//                            invoiceTaxesLabel.setText("Tax: $" + String.valueOf(invSelectedTableRow.getTax()));
-//                            invoiceTotalLabel.setText("Total: $" + String.valueOf(invSelectedTableRow.getTotal()));
-//                        }
-//                    }
-//                }
-//            }
-//        });
-//     }
+    private void fillInvoiceSummaryList() {
+
+        purchaseHistoryTable.setOnMouseClicked(event ->  {
+
+            if(!purchaseHistoryTable.getItems().isEmpty()) {
+
+               if(event.getClickCount() == 1) {
+
+                  SupplierInvoice invSelectedTableRow = purchaseHistoryTable.getSelectionModel().getSelectedItem();
+
+                    if(invSelectedTableRow != null) {
+
+                        SearchSupplierInvoiceItem invoiceData = new SearchSupplierInvoiceItem();
+                        invoiceData.searchInvoiceItemData(invSelectedTableRow.getOrderID());
+
+                        if(invoiceData.getInvoiceData() != null) {
+
+                            invoiceSumListView.setItems(invoiceData.getInvoiceData());
+
+                            discountLabel.setText("Discount: $" + String.valueOf(invSelectedTableRow.getDiscount()));
+                            subTotalLabel.setText("Sub-Total: $" + String.valueOf(invSelectedTableRow.getSubTotal()));
+                            taxesLabel.setText("Tax: $" + String.valueOf(invSelectedTableRow.getTax()));
+                            totalLabel.setText("Total: $" + String.valueOf(invSelectedTableRow.getTotal()));
+                        }
+                    }
+               }
+            }
+       });
+    }
 
     private void searchSupplier() {
 

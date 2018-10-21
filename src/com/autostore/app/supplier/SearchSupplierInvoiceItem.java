@@ -36,7 +36,7 @@ public class SearchSupplierInvoiceItem {
 
                 if(!connection.isClosed()) {
 
-                    String query = "select * from supplier_purchaseline where order_id = ?";
+                    String query = "select * from supplier_purchaseline where purchase_id = ?";
 
                     preparedStatement = connection.prepareStatement(query);
                     preparedStatement.setInt(1, orderID);
